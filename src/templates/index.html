@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <head>
+        <title> Covid-19 Tracker</title>
+    </head>
+
+    <link href="https://fonts.googleapis.com/css?family=Candal&display=swap" rel="stylesheet">
+
+    <style>
+        *
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body
+        {
+            overflow-x: hidden; 
+        }
+
+        #Landing{
+            position: relative;
+        }
+
+        #landing-img{
+            height: 98%;
+            width: 98%;
+            margin-left: 60px;
+            margin-bottom: -30px;
+        }  
+        #covid-landing{
+            position: absolute;
+            top: 35%;
+            font-family: 'Candal', sans-serif;
+            font-size: 5vw;
+            left: 10%;
+            color: #433E3E;
+        } 
+        #lt-landing{
+            position: absolute;
+            top: 49%;
+            font-family: 'Candal', sans-serif;
+            font-size: 5vw;
+            left: 10%;
+            color: #433E3E;
+        }
+        #hotspots-title{
+            position: relative;
+            margin-top: 5%;
+            font-family: 'Candal', sans-serif;
+            font-size: 5vw;
+            left: 10%;
+            color: #433E3E;
+        }
+        #status-title{
+            position: relative;
+            margin-top: 5%;
+            font-family: 'Candal', sans-serif;
+            font-size: 5vw;
+            left: 10%;
+            color: #433E3E;    
+        }
+        #live-status{
+            margin-bottom: 70%;
+        }
+        #symptoms-title{
+            position: absolute;
+            margin-top: 3.5%;
+            font-family: 'Candal', sans-serif;
+            font-size: 5vw;
+            left: 10%;
+            color: #ffffff;    
+        }
+        #symptoms-img{
+            height: 80%;
+            width:100%;
+        }
+        #prevention-title{
+            position: relative;
+            margin-top: 5%;
+            font-family: 'Candal', sans-serif;
+            font-size: 5vw;
+            left: 10%;
+            color: #433E3E;  
+            margin-bottom: 10%;     
+        }
+        #p1-img{
+            position: relative;
+            height: 20%;
+            width: 20%;
+            margin-right: 4%;
+        }
+        #p2-img{
+            position: relative;
+            height: 20%;
+            width: 20%; 
+            margin-right: 4%;           
+        }
+        #p3-img{
+            position: relative;
+            height: 20%;
+            width: 20%; 
+            margin-right: 4%;          
+        }
+        #p4-img{
+            position: relative;
+            height: 20%;
+            width: 20%;           
+        }
+        .grid-container {
+            margin-left: 8%;
+        }
+    </style>
+
+    <body>
+
+        <section id = 'Landing'>
+            <img id = "landing-img" src = "{% static 'images/Landing.png' %}">
+            <p id = 'covid-landing'>COVID-19</p>
+            <p id = 'lt-landing'>Live Tracker</p>
+        </section> 
+
+        <section id = 'hotspots'>
+            <p id = 'hotspots-title'>Hotspots</p>
+            <img id = "landing-img" src = "{% static 'images/World mapCOVID.png' %}">
+        </section>
+
+        <section id = 'live-status'>
+                <p id = 'status-title'>Live Status</p> 
+        </section>
+
+        <section id = 'symptoms'>
+            <p id = 'symptoms-title'>Symptoms</p> 
+            <img id = "symptoms-img" src = "{% static 'images/Symptoms.svg' %}">     
+        </section>
+
+        <section id = 'prevention'>
+            <p id = 'prevention-title'>Prevention</p> 
+            <div class="grid-container">
+                <img id = "p1-img" src = "{% static 'images/p1.svg' %}">     
+                <img id = "p2-img" src = "{% static 'images/p2.svg' %}">   
+                <img id = "p3-img" src = "{% static 'images/p3.svg' %}">   
+                <img id = "p4-img" src = "{% static 'images/p4.svg' %}">  
+            </div>
+        </section>
+
+    </body>
+</html>
