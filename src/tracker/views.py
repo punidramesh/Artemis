@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from tracker.utils.getData import getJSON
+from tracker.utils import getData, uploadToDb
 def home(request):
-    getJSON()
+    getData.getJSON()
+    uploadToDb.upload()
     return render(request,"index.html",{})

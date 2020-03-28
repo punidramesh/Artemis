@@ -1,13 +1,13 @@
 import requests, json
 
-
+#Append dictionary items into a list
 def appendList(value,death, confirmed, recovered, key, country):
     death = death.append(int(value['deaths'])) 
     confirmed = confirmed.append(int(value['confirmed']))
     recovered = recovered.append(int(value['recovered']))
     country = country.append(key)
 
-
+#Generate a list with the fields zipped together
 def getJSON():
     death = []
     confirmed = []
@@ -25,8 +25,9 @@ def getJSON():
     for key,value in sorted(data.items()):
         #print(key," -> ",value[-1])  
         appendList(value[-1],death, confirmed, recovered, key, country)   
-    zipped = zip(death,confirmed,recovered,country)      
-    print(sorted(zipped, reverse = True),"\n")
+    zipped = zip(death,confirmed,recovered,country)  
+
+    return sorted(zipped, reverse = True)
 
 
 
