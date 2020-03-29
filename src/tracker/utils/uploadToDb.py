@@ -15,14 +15,17 @@ def upload():
             # Open connection to database 
             conn = psycopg2.connect(
                     host = "localhost",
+                    port="5432",
                     database="coronadb", 
                     user="postgres", 
                     password="G0odBy3C0rona")
 
+            conn.set_session(autocommit=True)
             # Cursor
             cursor = conn.cursor()
             cursor.execute("INSERT INTO tracker_livedata (country, dead, confirmed, recovered) VALUES (%s,%s,%s,%s);",
             (death[i],confirmed[i],recovered[i],country[i]))
+            print("Inside uploadToDb\n")
         except psycopg2.InterfaceError as exc:
             print (exc.message)
             conn = psycopg2.connect(

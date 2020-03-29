@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from tracker.utils import getData, uploadToDb
+from .models import Livedata
 def home(request):
-    getData.getJSON()
-    uploadToDb.upload()
+    # uploadToDb.upload()
+    
     return render(request,"index.html",{})

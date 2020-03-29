@@ -5,3 +5,4 @@ class Livedata(models.Model):
     dead = models.CharField(max_length = 120, null = False, blank = False)
     confirmed = models.CharField(max_length = 120, null = False, blank = False)
     recovered = models.CharField(max_length = 120, null = False, blank = False, default='-')
+
