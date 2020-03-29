@@ -128,9 +128,36 @@
         .grid-container {
             margin-left: 8%;
         }
+        #table-deaths{
+            position: absolute;
+            margin-top: 5%;
+            font-family: 'Candal', sans-serif;
+            font-size: 2vw;
+            left: 40%;
+            color: #433E3E;  
+            margin-bottom: 10%; 
+        }
+        #table-affected{
+            position: absolute;
+            margin-top: 5%;
+            font-family: 'Candal', sans-serif;
+            font-size: 2vw;
+            left: 62%;
+            color: #433E3E;  
+            margin-bottom: 10%;
+        }
+        #table-recovered{
+            position: absolute;
+            margin-top: 5%;
+            font-family: 'Candal', sans-serif;
+            font-size: 2vw;
+            left: 85%;
+            color: #433E3E;  
+            margin-bottom: 10%;
+        }
     </style>
 
-    <body>
+    <body onload="Javascript:addTable()">
 
         <section id = 'Landing'>
             <img id = "landing-img" src = "{% static 'images/Landing.png' %}">
@@ -146,6 +173,20 @@
 
         <section id = 'live-status'>
                 <p id = 'status-title'>Live Status</p> 
+
+            <div id="mydata">
+
+            <table id="myTableData"  border="0" cellpadding="2">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td id = 'table-deaths'>Deaths</td>
+                    <td id = 'table-affected'>Affected</td>
+                    <td id = 'table-recovered'>Recovered</td>
+                </tr>
+            </table>
+             
+            </div>
+                
         </section>
 
         <section id = 'symptoms'>
