@@ -157,7 +157,33 @@
         }
     </style>
 
-    <body onload="Javascript:addTable()">
+    <script type='text/javascript'>;
+                
+            function addCell(tr, val) {
+                var td = document.createElement('td');
+                td.innerHTML = val;
+                tr.appendChild(td)
+            }
+
+            function addRow(myTableData, val_1, val_2, val_3) {
+
+                addCell(tr, val_1);
+                addCell(tr, val_2);
+                addCell(tr, val_3);
+
+                myTableData.appendChild(tr)
+            }
+
+            function main() {
+                myTableData = document.getElementById('myTableData');
+
+                addRow(myTableData, 'foo', 'bar', 'baz');
+                addRow(myTableData, 'one', 'two', 'three');
+            }
+
+    </script>
+
+    <body onload='main()'>
 
         <section id = 'Landing'>
             <img id = "landing-img" src = "{% static 'images/Landing.png' %}">
