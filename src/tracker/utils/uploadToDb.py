@@ -10,7 +10,6 @@ size = len(death) - 1
 # Queries
 def upload():
 
-    
     try:
         # Open connection to database 
         conn = psycopg2.connect(
@@ -26,8 +25,7 @@ def upload():
         cursor.execute("DELETE FROM tracker_livedata")
         for i in range(size):
             cursor.execute("INSERT INTO tracker_livedata (country, dead, confirmed, recovered) VALUES (%s,%s,%s,%s);",
-            (death[i],confirmed[i],recovered[i],country[i]))
-            print("Inside uploadToDb\n")
+            (country[i],death[i],confirmed[i],recovered[i]))
     except psycopg2.InterfaceError as exc:
         print (exc.message)
         conn = psycopg2.connect(

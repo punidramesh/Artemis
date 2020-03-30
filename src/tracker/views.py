@@ -3,4 +3,5 @@ from tracker.utils import getData, uploadToDb
 from .models import Livedata
 def home(request):
     uploadToDb.upload()
-    return render(request,"index.html",{})
+    context = getData.contextPass()
+    return render(request,"index.html",{'records': context})

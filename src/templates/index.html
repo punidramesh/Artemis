@@ -79,7 +79,7 @@
             color: #433E3E;    
         }
         #live-status{
-            margin-bottom: 70%;
+            margin-bottom: 1%;
         }
         #symptoms-title{
             position: absolute;
@@ -128,60 +128,91 @@
         .grid-container {
             margin-left: 8%;
         }
-        #table-deaths{
-            position: absolute;
-            margin-top: 5%;
+        #table-country{
+            position: relative;
+            padding: 2%;
             font-family: 'Candal', sans-serif;
-            font-size: 2vw;
-            left: 40%;
+            font-size: 1vw;
+            left: 10%;
             color: #433E3E;  
-            margin-bottom: 10%; 
+        }
+        #table-deaths{
+            position: relative;
+            margin-top: 15%;
+            font-family: 'Candal', sans-serif;
+            font-size: 1.5vw;
+            left: 40%;
+            line-height: 1vw;
+            color: #433E3E;  
+            margin-bottom: 10%;    
+            padding-right: 1rem;
         }
         #table-affected{
-            position: absolute;
-            margin-top: 5%;
+            position: relative;
+            margin-top: 15%;
             font-family: 'Candal', sans-serif;
-            font-size: 2vw;
+            font-size: 1.5vw;
             left: 62%;
             color: #433E3E;  
-            margin-bottom: 10%;
+            margin-bottom: 10%;  
+            padding-left: 1rem;   
         }
         #table-recovered{
-            position: absolute;
-            margin-top: 5%;
+            position: relative;
+            margin-top: 15%;
             font-family: 'Candal', sans-serif;
-            font-size: 2vw;
+            font-size: 1.5vw;
             left: 85%;
             color: #433E3E;  
             margin-bottom: 10%;
+            padding-left: 1rem; 
         }
+        #country{
+            position: relative;
+            padding: 2%;
+            font-family: 'Candal', sans-serif;
+            font-size: 1vw;
+            left: 10%;
+            color: #433E3E;     
+        }
+        #deaths{
+            position: relative;
+            margin-top: 15%;
+            font-family: 'Candal', sans-serif;
+            font-size: 1vw;
+            left: 40%;
+            line-height: 1vw;
+            color: #433E3E;  
+            margin-bottom: 10%;    
+            padding-right: 1rem; 
+        }
+        #confirmed{
+            position: relative;
+            margin-top: 15%;
+            font-family: 'Candal', sans-serif;
+            font-size: 1vw;
+            left: 62%;
+            color: #433E3E;  
+            margin-bottom: 10%;  
+            padding-left: 1rem;   
+        }
+        #recovered{
+            position: relative;
+            margin-top: 15%;
+            font-family: 'Candal', sans-serif;
+            font-size: 1vw;
+            left: 85%;
+            color: #433E3E;  
+            margin-bottom: 10%;
+            padding-left: 1rem; 
+            
+        }
+        #live_data{
+            padding-top: 10%;
+            padding-left: 6%;
+        }
+
     </style>
-
-    <script type='text/javascript'>;
-                
-            function addCell(tr, val) {
-                var td = document.createElement('td');
-                td.innerHTML = val;
-                tr.appendChild(td)
-            }
-
-            function addRow(myTableData, val_1, val_2, val_3) {
-
-                addCell(tr, val_1);
-                addCell(tr, val_2);
-                addCell(tr, val_3);
-
-                myTableData.appendChild(tr)
-            }
-
-            function main() {
-                myTableData = document.getElementById('myTableData');
-
-                addRow(myTableData, 'foo', 'bar', 'baz');
-                addRow(myTableData, 'one', 'two', 'three');
-            }
-
-    </script>
 
     <body onload='main()'>
 
@@ -201,16 +232,23 @@
                 <p id = 'status-title'>Live Status</p> 
 
             <div id="mydata">
-
-            <table id="myTableData"  border="0" cellpadding="2">
-                <tr>
-                    <td>&nbsp;</td>
-                    <td id = 'table-deaths'>Deaths</td>
-                    <td id = 'table-affected'>Affected</td>
-                    <td id = 'table-recovered'>Recovered</td>
-                </tr>
-            </table>
-             
+                
+                <table id = 'live_data'>
+                    <tr>
+                        <td id = 'table-country'></td>
+                        <td id = 'table-deaths'>Deaths</td>
+                        <td id = 'table-affected'>Affected</td>
+                        <td id = 'table-recovered'>Recovered</td>
+                    </tr>
+                    {% for r in records %}
+                        <tr>
+                            <td id = 'country'>{{ r.cd }}</td>
+                            <td id = 'deaths'>{{ r.d }}</td>
+                            <td id = 'confirmed'>{{ r.cn }}</td>
+                            <td id = 'recovered'>{{ r.r }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
             </div>
                 
         </section>
