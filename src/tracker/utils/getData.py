@@ -28,7 +28,7 @@ def getJSON():
         appendList(value[-1],death, confirmed, recovered, key, country)   
 
     # Sort lists based on highest no. of deaths    
-    zipped = zip(death,confirmed,recovered,country) 
+    zipped = zip(confirmed,death,recovered,country) 
 
     return sorted(zipped, reverse = True)
 

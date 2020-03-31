@@ -4,7 +4,7 @@ from tracker.utils.getData import getJSON
 # Manipulating received data
 
 livedata = list(getJSON())
-death,confirmed,recovered,country = zip(*livedata)
+confirmed,death,recovered,country = zip(*livedata)
 size = len(death) - 1
 
 # Queries
