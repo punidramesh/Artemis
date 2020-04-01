@@ -69,10 +69,8 @@
             font-family: 'Candal', sans-serif;
             font-size: 5vw;
             left: 10%;
-            color: #433E3E;    
-        }
-        #live-status{
-            margin-bottom: 1%;
+            color: #433E3E;  
+            padding-top: 10%;  
         }
         #symptoms-title{
             position: absolute;
@@ -81,6 +79,9 @@
             font-size: 5vw;
             left: 10%;
             color: #ffffff;    
+        }
+        td{
+            align-content: center;
         }
         #symptoms-img{
             height: 80%;
@@ -121,91 +122,19 @@
         .grid-container {
             margin-left: 8%;
         }
+
+
         #mydata{
-            padding-right: 10%;
-        }
-        #table-country{
-            position: relative;
-            padding: 2%;
-            font-family: 'Candal', sans-serif;
-            font-size: 1vw;
-            left: 10%;
-            color: #433E3E;  
-        }
-        #table-deaths{
-            position: relative;
-            margin-top: 15%;
-            font-family: 'Candal', sans-serif;
-            font-size: 1.5vw;
-            left: 40%;
-            line-height: 1vw;
-            color: #433E3E;  
-            margin-bottom: 10%;    
-            padding-right: 1rem;
-        }
-        #table-affected{
-            position: relative;
-            margin-top: 15%;
-            font-family: 'Candal', sans-serif;
-            font-size: 1.5vw;
-            left: 62%;
-            color: #433E3E;  
-            margin-bottom: 10%;  
-            padding-left: 1rem;   
-        }
-        #table-recovered{
-            position: relative;
-            margin-top: 15%;
-            font-family: 'Candal', sans-serif;
-            font-size: 1.5vw;
-            left: 85%;
-            color: #433E3E;  
-            margin-bottom: 10%;
-            padding-left: 1rem; 
-        }
-        #country{
-            position: relative;
-            padding: 2%;
-            font-family: 'Candal', sans-serif;
-            font-size: 1vw;
-            left: 10%;
-            color: #433E3E;     
-        }
-        #deaths{
-            position: relative;
-            margin-top: 15%;
-            font-family: 'Candal', sans-serif;
-            font-size: 1vw;
-            left: 40%;
-            line-height: 1vw;
-            color: #433E3E;  
-            margin-bottom: 10%;    
-            padding-right: 1rem; 
-        }
-        #confirmed{
-            position: relative;
-            margin-top: 15%;
-            font-family: 'Candal', sans-serif;
-            font-size: 1vw;
-            left: 62%;
-            color: #433E3E;  
-            margin-bottom: 10%;  
-            padding-left: 1rem;   
-        }
-        #recovered{
-            position: relative;
-            margin-top: 15%;
-            font-family: 'Candal', sans-serif;
-            font-size: 1vw;
-            left: 85%;
-            color: #433E3E;  
-            margin-bottom: 10%;
-            padding-left: 1rem; 
+            margin-top: -10%;
+            padding-right: 30%;
             
         }
         #live_data{
-            padding-top: 10%;
-            padding-left: 6%;
+            padding-left:3vw;
+            border-spacing: 13vw;
+            padding-top: 16%;
+            font-family: 'Candal', sans-serif;
+            align-items: right;
         }
         #hotspots{
             position: relative;
@@ -258,7 +187,94 @@
             left: 10%;
             color: #433E3E;
         }
+        @media only screen and (max-width: 760px)  {
 
+        #live_data{
+            padding-top: 40%;
+            align-items: center;
+            padding-left: 21%;
+        }   
+
+		/* Force table to not be like tables anymore */
+		table, thead, tbody, th, td, tr {
+            display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+        tr {
+        margin: 0 0 1rem 0;
+        }
+        
+        tr:nth-child(odd) {
+        background: rgb(255, 255, 255);
+        }
+    
+		td {
+			/* Behave  like a "row" */
+			border: none;
+			border-bottom: 1px solid rgb(255, 255, 255);
+			position: relative;
+            padding-left: 90%;
+            font-family: 'Candal', sans-serif;
+		}
+
+		td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 0;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+            white-space: nowrap;
+            font-family: 'Candal', sans-serif;
+		}
+
+		td:nth-of-type(1):before { content: "Country"; }
+		td:nth-of-type(2):before { content: "Deaths"; }
+		td:nth-of-type(3):before { content: "Confirmed"; }
+        td:nth-of-type(4):before { content: "Recovered"; }
+        
+
+        #confirmed{
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 3vw;
+            color: #433E3E;    
+        }
+        #country{
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 3vw;
+            color: #433E3E;
+        }
+        #deaths{
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 3vw;
+            color: #433E3E;
+        }
+        #recovered{
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 3vw;
+            color: #433E3E;
+        }
+        #table-country{  
+            display: none;
+        }
+        #table-deaths{
+            display: none;
+        }
+        #table-affected{
+            display: none; 
+        }
+        #table-recovered{
+            display: none;
+        }
+	}
     </style>
 
     <body onload='main()'>
@@ -292,31 +308,6 @@
             {% endfor %}
         </section>
 
-        <section id = 'live-status'>
-                <p id = 'status-title'>Live Status</p>
-
-            <div id="mydata">
-                
-                <table id = 'live_data'>
-                    <tr>
-                        <td id = 'table-country'></td>
-                        <td id = 'table-deaths'>Deaths</td>
-                        <td id = 'table-affected'>Affected</td>
-                        <td id = 'table-recovered'>Recovered</td>
-                    </tr>
-                    {% for r in records %}
-                        <tr>
-                            <td id = 'country'>{{ r.cd }}</td>
-                            <td id = 'deaths'>{{ r.d }}</td>
-                            <td id = 'confirmed'>{{ r.cn }}</td>
-                            <td id = 'recovered'>{{ r.r }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
-                
-        </section>
-
         <section id = 'symptoms'>
             <p id = 'symptoms-title'>Symptoms</p> 
             <img id = "symptoms-img" src = "{% static 'images/Symptoms.svg' %}">     
@@ -332,5 +323,33 @@
             </div>
         </section>
 
+        <section id = 'live-status'>
+                <p id = 'status-title'>Live Status</p>
+
+            <div id="mydata">
+
+                <table id = 'live_data'>
+                    <tbody role="rowgroup" >
+                        <thead id = 'header'>
+                            <tr>
+                                <td id = 'table-country'></td>
+                                <td id = 'table-deaths'>Death</td>
+                                <td id = 'table-affected'>Affected</td>
+                                <td id = 'table-recovered'>Recovered</td>
+                            </tr>    
+                        </thead>
+                    {% for r in records %}
+                        <tr>
+                            <td id = 'country' role="cell">{{ r.cd }}</td>
+                            <td id = 'deaths' role="cell">{{ r.d }}</td>
+                            <td id = 'confirmed' role="cell">{{ r.cn }}</td>
+                            <td id = 'recovered' role="cell">{{ r.r }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+                
+        </section>
     </body>
 </html>
