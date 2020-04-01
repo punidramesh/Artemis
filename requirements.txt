@@ -13,13 +13,14 @@ odict==1.7.0
 optional-django==0.1.0
 plumber==1.5
 psycopg2==2.8.4
-python-dateutil==2.8.1
+python-dateutil==1.5
 pytz==2019.3
 requests==2.23.0
 six==1.14.0
 sqlparse==0.3.1
 tail==0.1.12
 urllib3==1.25.8
+whitenoise==5.0.1
 zope.component==4.6.1
 zope.deferredimport==4.3.1
 zope.deprecation==4.4.0
