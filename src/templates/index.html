@@ -62,14 +62,7 @@
             left: 5%;
             color: #1f1b1d;
         }
-        #hotspots-title{
-            position: relative;
-            margin-top: 5%;
-            font-family: 'Candal', sans-serif;
-            font-size: 5vw;
-            left: 10%;
-            color: #433E3E;
-        }
+        
         #status-title{
             position: relative;
             margin-top: 5%;
@@ -214,6 +207,57 @@
             padding-top: 10%;
             padding-left: 6%;
         }
+        #hotspots{
+            position: relative;
+        }
+        #us{
+            position: absolute;
+            height: 3vw;
+            width: 3vw;
+            top: 41%;
+            left: 20%;
+        }
+        #italy{
+            position: absolute;
+            height: 3vw;
+            width: 3vw;
+            top: 40%;
+            left: 44.75%;
+        }
+        #germany{
+            position: absolute;
+            height: 3vw;
+            width: 3vw;
+            top: 35%;
+            left: 43%;
+        }
+        #china{
+            position: absolute;
+            height: 3vw;
+            width: 3vw;
+            top: 44%;
+            left: 65%;
+        }
+        #spain{
+            position: absolute;
+            height: 3vw;
+            width: 3vw;
+            top: 41%;
+            left: 39.5%;
+        }
+        #hotspots-img{
+            height: 60vw;
+            width: 100vw;
+            margin-bottom: -30px;   
+        }
+        #hotspots-title{
+            position: relative;
+            margin-top: 5%;
+            font-family: 'Candal', sans-serif;
+            font-size: 5vw;
+            left: 10%;
+            color: #433E3E;
+        }
 
     </style>
 
@@ -228,7 +272,24 @@
 
         <section id = 'hotspots'>
             <p id = 'hotspots-title'>Hotspots</p>
-            <img id = "landing-img" src = "{% static 'images/World mapCOVID.png' %}">
+            <img id = "hotspots-img" src = "{% static 'images/World mapCOVID.png' %}">
+            {% for i in hotspots %}
+                {%if i.cd == US%}
+                    <img id = "us" src = "{% static 'images/pointer.png' %}">
+                {% endif %}
+                {%if i.cd == Italy%}
+                    <img id = "italy" src = "{% static 'images/pointer.png' %}">
+                {% endif %}
+                {%if i.cd == Spain%}
+                    <img id = "spain" src = "{% static 'images/pointer.png' %}">
+                {% endif %}
+                {%if i.cd == Germany%}
+                    <img id = "germany" src = "{% static 'images/pointer.png' %}">
+                {% endif %}
+                {%if i.cd == China%}
+                    <img id = "china" src = "{% static 'images/pointer.png' %}">
+                {% endif %}
+            {% endfor %}
         </section>
 
         <section id = 'live-status'>

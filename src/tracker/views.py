@@ -4,4 +4,5 @@ from .models import Livedata
 def home(request):
     uploadToDb.upload()
     context = getData.contextPass()
-    return render(request,"index.html",{'records': context})
+    hotspots = getData.topCountries()
+    return render(request,"index.html",{'records': context, 'hotspots': hotspots})

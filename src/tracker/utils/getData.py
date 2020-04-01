@@ -56,7 +56,7 @@ def contextPass():
     cursor.execute("SELECT country,dead,confirmed,recovered FROM tracker_livedata")
     record = cursor.fetchall()
     records = []
-    
+    top = []
     for i in record:
         dict = {}
         dict['cd'] = i[0]
@@ -64,4 +64,19 @@ def contextPass():
         dict['cn'] = i[2]
         dict['r'] = i[3]
         records.append(dict)
+    for r in records:
+        top.append(r['cd'])
+        top = top[0:4]    
     return records
+
+def topCountries():
+    records = contextPass()
+    top = []
+    for r in records:
+        dict  = {}
+        dict['cd'] = r['cd']
+        dict['cn'] = r['cn']
+        top.append(dict)
+    top = top[0:5] 
+    dict['countries'] = top  
+    return dict 
