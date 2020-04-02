@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/Users/prdeck/Desktop/COVID/bin/python3",
+    "python.pythonPath": "/usr/local/bin/python3",
     "python.autoComplete.extraPaths": ["./src"],
     "python.jediEnabled": false,
     "git.ignoreLimitWarning": true,

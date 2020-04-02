@@ -85,9 +85,6 @@
             left: 10%;
             color: #ffffff;    
         }
-        td{
-            align-content: center;
-        }
 
         #symptoms-img{
             height: 80%;
@@ -296,14 +293,17 @@
                 margin-top: 5%;
                 font-family: 'Candal', sans-serif;
                 font-size: 5vw;
-                left: 15%;
+                left: 27%;
                 color: #433E3E;
                 margin-bottom: 5%;
             }
 
         @media only screen and (max-width: 760px)  {
 
-
+            #search-text{
+                font-size: 7.5vw;
+                padding-right: 20vw;
+            }
             .responsive-table .table-header {
                 display: none;
             }
@@ -319,9 +319,9 @@
             }
             .responsive-table .col:before {
                 color: #6C7A89;
-                padding-right: 10px;
+                padding-right: 50px;
                 content: attr(data-label);
-                flex-basis: 50%;
+                flex-basis: 45%;
                 text-align: right;
             }
             #status-title{
@@ -436,7 +436,7 @@
                 height: 3vw;
                 width: 3vw;
                 top: 29%;
-                left: 39.5%;
+                left: 39.5%; 
         }
 	}
     </style>
@@ -467,7 +467,7 @@
                     <img id = "germany" src = "{% static 'images/pointer.png' %}">
                 {% endif %}
                 {%if i.cd == China%}
-                    <img id = "china" src = "{% static 'images/pointer.png' %}">
+                    <img id = "china" src = "{% static 'images/pointer.png' %}" title="China">
                 {% endif %}
             {% endfor %}
         </section>
@@ -495,30 +495,6 @@
 
         <section id = 'live-status'>
                 <p id = 'status-title'>Live Status</p>
-
-            <!--div id="mydata">
-
-                <table id = 'live_data'>
-                    <tbody role="rowgroup" >
-                        <thead id = 'header'>
-                            <tr>
-                                <td id = 'table-country'></td>
-                                <td id = 'table-deaths'>Death</td>
-                                <td id = 'table-affected'>Affected</td>
-                                <td id = 'table-recovered'>Recovered</td>
-                            </tr>    
-                        </thead>
-                    {% for r in records %}
-                        <tr>
-                            <td id = 'country' role="cell">{{ r.cd }}</td>
-                            <td id = 'deaths' role="cell">{{ r.d }}</td>
-                            <td id = 'confirmed' role="cell">{{ r.cn }}</td>
-                            <td id = 'recovered' role="cell">{{ r.r }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div-->  
             <div class="container">
                 <ul class="responsive-table" id = 'table-l'>
                     <li class="table-header">
@@ -537,7 +513,7 @@
                     {% endfor %}    
                 </ul>
               </div>
-            <p id = 'search-text'>Search for your country</p>
+            <p id = 'search-text'>Search country</p>
 
         </section>
         <section class="content">
@@ -545,7 +521,7 @@
               <input 
                      type="text" 
                      class="search-bar__input" 
-                     placeholder="Search country..."
+                     placeholder="Search country"
                      aria-label="search"/>
               <button 
                       class="search-bar__submit"
