@@ -1,14 +1,15 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="{% static '/images/favicon.png' %}}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static '/images/favicon.png' %}"/>
     <head>
-        <title>Cornonavirus</title>
+        <title>Coronavirus</title>
     </head>
 
     <link href="https://fonts.googleapis.com/css?family=Candal&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'><link rel="stylesheet" href="./style.css">
 
     <style>
         *
@@ -17,7 +18,11 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        :root {
+            --clr-primary: #552944;
+            --clr-body: rgb(219, 182, 18);
+            --clr-bg: #ddd;
+        }
         html, body {
             max-width: 100%;
             overflow-x: hidden;
@@ -83,6 +88,7 @@
         td{
             align-content: center;
         }
+
         #symptoms-img{
             height: 80%;
             width:100%;
@@ -123,18 +129,49 @@
             margin-left: 8%;
         }
 
-        #mydata{
-            margin-top: -10%;
-            padding-right: 30%;
-            
+        .container {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
         }
-        #live_data{
-            padding-left:3vw;
-            border-spacing: 13vw;
-            padding-top: 16%;
+
+        #table-l{
+            margin-top: 13%;
+        }
+
+        .responsive-table li {
+            border-radius: 3px;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        .responsive-table .table-header {
+            background-color: #552944;
+            font-size: 14px;
+            letter-spacing: 0.03em;
             font-family: 'Candal', sans-serif;
-            align-items: right;
+            color: white;
         }
+        .responsive-table .table-row {
+            background-color: #ffffff;
+            box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+        }
+        .responsive-table .col-1 {
+            flex-basis: 10%;
+        }
+        .responsive-table .col-2 {
+            flex-basis: 12%;
+        }
+        .responsive-table .col-3 {
+            flex-basis: 15%;
+        }
+        .responsive-table .col-4 {
+            flex-basis: 10%;
+        }
+
         #hotspots{
             position: relative;
         }
@@ -186,206 +223,220 @@
             left: 10%;
             color: #433E3E;
         }
+            .content {
+                background-color: #ffffff;
+                width: 70vw;
+                padding-left: 27%;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .search-bar {
+                --size: 60px;
+                border: 2px solid var(--clr-primary);
+                display: flex;
+                border-radius: 100vh;
+                width: var(--size);
+                height: var(--size);
+                padding: 3px;
+                position: relative;
+                overflow: hidden;
+                transition: width 400ms cubic-bezier(0.18, 0.89, 0.32, 1.15);
+                /* focus-within alters the parent of the child being focus*/
+            }
+            .search-bar__input {
+                flex-grow: 1;
+                font-size: 1.5rem;
+                padding: 0 0.5em;
+                border: 0;
+                background-color: transparent;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                opacity: 0;
+                cursor: pointer;
+                transition: opacity 400ms ease-in;
+            }
+            .search-bar__input:focus {
+                outline: 0;
+            }
+            .search-bar__submit {
+                font-size: 1.7rem;
+                cursor: pointer;
+                border: 0;
+                background-color: transparent;
+                border-radius: 50%;
+                background-color: #552944;
+                width: calc(var(--size) - 10px);
+                height: calc(var(--size) - 10px);
+                margin-left: auto;
+                transition: background-color 350ms ease-in-out;
+            }
+            .search-bar:focus-within {
+                width: 100%;
+            }
+            .search-bar:focus-within .search-bar__submit {
+                background-color: var(--clr-primary);
+                color: rgba(255, 255, 255, 0);
+            }
+            .search-bar:focus-within .search-bar__submit:focus, .search-bar:focus-within .search-bar__submit:hover {
+                outline: 0;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+            }
+            .search-bar:focus-within .search-bar__input {
+                opacity: 1;
+                cursor: initial;
+                width: calc(100% - var(--size));
+            }
+            #search-text{
+                position: relative;
+                margin-top: 5%;
+                font-family: 'Candal', sans-serif;
+                font-size: 5vw;
+                left: 15%;
+                color: #433E3E;
+                margin-bottom: 5%;
+            }
+
         @media only screen and (max-width: 760px)  {
 
-        #live_data{
-            padding-top: 41%;
-            align-items: center;
-            padding-left: 21%;
-        }   
 
-		/* Force table to not be like tables anymore */
-		table, thead, tbody, th, td, tr {
-            display: block;
-		}
-
-		/* Hide table headers (but not display: none;, for accessibility) */
-		thead tr {
-			position: absolute;
-			top: -9999px;
-			left: -9999px;
-		}
-
-        tr {
-        margin: 0 0 1rem 0;
-        }
-        
-        tr:nth-child(odd) {
-        background: rgb(255, 255, 255);
-        }
-    
-		td {
-			/* Behave  like a "row" */
-			border: none;
-			border-bottom: 1px solid rgb(255, 255, 255);
-			position: relative;
-            padding-left: 90%;
-            font-family: 'Candal', sans-serif;
-		}
-
-		td:before {
-			/* Now like a table header */
-			position: absolute;
-			/* Top/left values mimic padding */
-			top: 0;
-			left: 6px;
-			width: 45%;
-			padding-right: 10px;
-            white-space: nowrap;
-            font-family: 'Candal', sans-serif;
-		}
-
-		td:nth-of-type(1):before { content: "Country"; }
-		td:nth-of-type(2):before { content: "Deaths"; }
-		td:nth-of-type(3):before { content: "Confirmed"; }
-        td:nth-of-type(4):before { content: "Recovered"; }
-        
-
-        #confirmed{
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-size: 3vw;
-            color: #433E3E;    
-        }
-        #country{
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-size: 3vw;
-            color: #433E3E;
-        }
-        #deaths{
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-size: 3vw;
-            color: #433E3E;
-        }
-        #recovered{
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-            font-size: 3vw;
-            color: #433E3E;
-        }
-        #table-country{  
-            display: none;
-        }
-        #table-deaths{
-            display: none;
-        }
-        #table-affected{
-            display: none; 
-        }
-        #table-recovered{
-            display: none;
-        }
-        #status-title{
-            padding-left: 25%;
-            justify-self: center;
-            align-self: center;
-        }
-        #prevention-title{
-            padding-left: 25%;
-            justify-self: center;
-            align-self: center;
-            margin-top: 20%;
-        }
-        .grid-container {
-            display: block;
-            margin-left: 1%;
-        }
-        #p1-img{
-            position: relative;
-            height: 45%; 
-            width: 45%;  
-            justify-self: center;
-            align-self: center; 
-            padding-left: 5%;
-        }
-        #p2-img{
-            position: relative;
-            height: 45%; 
-            width: 45%;  
-            justify-self: center;
-            align-self: center; 
-            padding-left: 5%;
-        }
-        #p3-img{
-            position: relative;
-            height: 45%; 
-            width: 45%;  
-            justify-self: center;
-            align-self: center; 
-            padding-left: 5%;
-        }
-        #p4-img{
-            position: relative;
-            height: 45%; 
-            width: 45%;  
-            justify-self: center;
-            align-self: center; 
-            padding-left: 5%;
-        }
-        #hotspots-img{
-            margin-bottom: 20%;
-        }
-        #symptoms-title{
-            padding-left: 25%;
-            padding-top: 5%;
-        }
-        #covid-landing{
-            padding-left: 5%;
-            font-size: 8vw;
-        }
-        #lt-landing{
-            margin-top: -7%;
-            padding-left: 5%;
-            font-size: 8vw;
-        }#lt1-landing{
-            margin-top: -13%;
-            padding-left: 6%;
-            font-size: 4vw;
-        }
-        #hotspots-title{
-            padding-left: 25%;
-            margin-top: -5%;
-        }
-        #landing-img{
-            height: 120vw;
-            width: 120vw;
-        }
-        #sym-mob{
-            height: 25vw;
-            width: 50vw;
-        }
-        #us{
-            position: absolute;
-            height: 3vw;
-            width: 3vw;
-            top: 31%;
-            left: 20%;
-        }
-        #italy{
-            position: absolute;
-            height: 3vw;
-            width: 3vw;
-            top: 30%;
-            left: 45.25%;
-        }
-        #germany{
-            position: absolute;
-            height: 3vw;
-            width: 3vw;
-            top: 25%;
-            left: 43%;
-        }
-        #china{
-            position: absolute;
-            height: 3vw;
-            width: 3vw;
-            top: 34%;
-            left: 65%;
-        }
-        #spain{
-            position: absolute;
-            height: 3vw;
-            width: 3vw;
-            top: 29%;
-            left: 39.5%;
+            .responsive-table .table-header {
+                display: none;
+            }
+            .responsive-table li {
+                display: block;
+            }
+            .responsive-table .col {
+                flex-basis: 100%;
+            }
+            .responsive-table .col {
+                display: flex;
+                padding: 10px 0;
+            }
+            .responsive-table .col:before {
+                color: #6C7A89;
+                padding-right: 10px;
+                content: attr(data-label);
+                flex-basis: 50%;
+                text-align: right;
+            }
+            #status-title{
+                padding-left: 25%;
+                justify-self: center;
+                align-self: center;
+            }
+            #prevention-title{
+                padding-left: 25%;
+                justify-self: center;
+                align-self: center;
+                margin-top: 20%;
+            }
+            .grid-container {
+                display: block;
+                margin-left: 1%;
+            }
+            #p1-img{
+                position: relative;
+                height: 45%; 
+                width: 45%;  
+                justify-self: center;
+                align-self: center; 
+                padding-left: 5%;
+            }
+            #p2-img{
+                position: relative;
+                height: 45%; 
+                width: 45%;  
+                justify-self: center;
+                align-self: center; 
+                padding-left: 5%;
+            }
+            #p3-img{
+                position: relative;
+                height: 45%; 
+                width: 45%;  
+                justify-self: center;
+                align-self: center; 
+                padding-left: 5%;
+            }
+            #p4-img{
+                position: relative;
+                height: 45%; 
+                width: 45%;  
+                justify-self: center;
+                align-self: center; 
+                padding-left: 5%;
+            }
+            #hotspots-img{
+                margin-bottom: 20%;
+            }
+            #symptoms-title{
+                padding-left: 25%;
+                padding-top: 5%;
+            }
+            #covid-landing{
+                padding-left: 5%;
+                font-size: 8vw;
+            }
+            #lt-landing{
+                margin-top: -7%;
+                padding-left: 5%;
+                font-size: 8vw;
+            }#lt1-landing{
+                margin-top: -13%;
+                padding-left: 6%;
+                font-size: 4vw;
+            }
+            #hotspots-title{
+                padding-left: 25%;
+                margin-top: -5%;
+            }
+            #landing-img{
+                height: 120vw;
+                width: 120vw;
+            }
+            #sym-mob{
+                height: 25vw;
+                width: 50vw;
+            }
+            #us{
+                position: absolute;
+                height: 3vw;
+                width: 3vw;
+                top: 31%;
+                left: 20%;
+            }
+            #italy{
+                position: absolute;
+                height: 3vw;
+                width: 3vw;
+                top: 30%;
+                left: 45.25%;
+            }
+            #germany{
+                position: absolute;
+                height: 3vw;
+                width: 3vw;
+                top: 25%;
+                left: 43%;
+            }
+            #china{
+                position: absolute;
+                height: 3vw;
+                width: 3vw;
+                top: 34%;
+                left: 65%;
+            }
+            #spain{
+                position: absolute;
+                height: 3vw;
+                width: 3vw;
+                top: 29%;
+                left: 39.5%;
         }
 	}
     </style>
@@ -445,7 +496,7 @@
         <section id = 'live-status'>
                 <p id = 'status-title'>Live Status</p>
 
-            <div id="mydata">
+            <!--div id="mydata">
 
                 <table id = 'live_data'>
                     <tbody role="rowgroup" >
@@ -467,8 +518,41 @@
                     {% endfor %}
                     </tbody>
                 </table>
-            </div>
-                
+            </div-->  
+            <div class="container">
+                <ul class="responsive-table" id = 'table-l'>
+                    <li class="table-header">
+                        <div class="col col-1">Location</div>
+                        <div class="col col-2">Deaths</div>
+                        <div class="col col-3">Affected</div>
+                        <div class="col col-4">Recovered</div>
+                    </li>
+                    {% for r in records %}
+                        <li class="table-row">
+                            <div class="col col-1" data-label="Country">{{ r.cd }}</div>
+                            <div class="col col-2" data-label="Deaths">{{ r.d }}</div>
+                            <div class="col col-3" data-label="Affected">{{ r.cn }}</div>
+                            <div class="col col-4" data-label="Recovered">{{ r.r }}</div>
+                        </li>
+                    {% endfor %}    
+                </ul>
+              </div>
+            <p id = 'search-text'>Search for your country</p>
+
         </section>
+        <section class="content">
+            <div class="search-bar">
+              <input 
+                     type="text" 
+                     class="search-bar__input" 
+                     placeholder="Search country..."
+                     aria-label="search"/>
+              <button 
+                      class="search-bar__submit"
+                      aria-label="submit search">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </section>
     </body>
 </html>
