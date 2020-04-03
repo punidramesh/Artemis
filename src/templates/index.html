@@ -32,8 +32,17 @@
         {
             overflow-x: hidden; 
         }
-
+        div.scroll { 
+                margin:4px, 4px; 
+                padding:4px; 
+                width: 750px; 
+                height: 510px; 
+                overflow-x: hidden; 
+                overflow-x: auto; 
+                text-align:justify; 
+            } 
         #Landing{
+            margin-top: -3%;
             position: relative;
         }
 
@@ -76,6 +85,7 @@
             left: 10%;
             color: #433E3E;  
             padding-top: 10%;  
+            margin-bottom: 10%;
         }
         #symptoms-title{
             position: absolute;
@@ -127,23 +137,20 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 750px;
             margin-left: auto;
             margin-right: auto;
             padding-left: 10px;
             padding-right: 10px;
         }
 
-        #table-l{
-            margin-top: 13%;
-        }
 
         .responsive-table li {
             border-radius: 3px;
-            padding: 25px 30px;
+            padding: 13px 18px;
             display: flex;
             justify-content: space-between;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
         }
         .responsive-table .table-header {
             background-color: #552944;
@@ -171,41 +178,43 @@
 
         #hotspots{
             position: relative;
+            padding-left: 2.5%;
         }
+        
         #us{
             position: absolute;
             height: 3vw;
             width: 3vw;
-            top: 41%;
+            top: 38%;
             left: 20%;
         }
         #italy{
             position: absolute;
             height: 3vw;
             width: 3vw;
-            top: 40%;
-            left: 44.75%;
+            top: 33%;
+            left: 47%;
         }
         #germany{
             position: absolute;
             height: 3vw;
             width: 3vw;
-            top: 35%;
-            left: 43%;
+            top: 27%;
+            left: 46%;
         }
         #china{
             position: absolute;
             height: 3vw;
             width: 3vw;
-            top: 44%;
-            left: 65%;
+            top: 39%;
+            left: 67%;
         }
         #spain{
             position: absolute;
             height: 3vw;
             width: 3vw;
-            top: 41%;
-            left: 39.5%;
+            top: 35%;
+            left: 41.75%;
         }
         #hotspots-img{
             height: 60vw;
@@ -290,39 +299,25 @@
             }
             #search-text{
                 position: relative;
-                margin-top: 5%;
                 font-family: 'Candal', sans-serif;
                 font-size: 5vw;
-                left: 27%;
                 color: #433E3E;
                 margin-bottom: 5%;
+                margin-top: 10%;
+                max-width: 750px;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 80px;
+                padding-right: 10px;
             }
 
         @media only screen and (max-width: 760px)  {
 
             #search-text{
                 font-size: 7.5vw;
-                padding-right: 20vw;
-            }
-            .responsive-table .table-header {
-                display: none;
-            }
-            .responsive-table li {
-                display: block;
-            }
-            .responsive-table .col {
-                flex-basis: 100%;
-            }
-            .responsive-table .col {
                 display: flex;
-                padding: 10px 0;
-            }
-            .responsive-table .col:before {
-                color: #6C7A89;
-                padding-right: 50px;
-                content: attr(data-label);
-                flex-basis: 45%;
-                text-align: right;
+                justify-self: center;
+                align-self: center;
             }
             #status-title{
                 padding-left: 25%;
@@ -392,7 +387,7 @@
                 font-size: 4vw;
             }
             #hotspots-title{
-                padding-left: 25%;
+                padding-left: 26%;
                 margin-top: -5%;
             }
             #landing-img{
@@ -407,36 +402,36 @@
                 position: absolute;
                 height: 3vw;
                 width: 3vw;
-                top: 31%;
+                top: 26%;
                 left: 20%;
             }
             #italy{
                 position: absolute;
                 height: 3vw;
                 width: 3vw;
-                top: 30%;
-                left: 45.25%;
+                top: 24%;
+                left: 47.75%;
             }
             #germany{
                 position: absolute;
                 height: 3vw;
                 width: 3vw;
-                top: 25%;
-                left: 43%;
+                top: 20%;
+                left: 47%;
             }
             #china{
                 position: absolute;
                 height: 3vw;
                 width: 3vw;
-                top: 34%;
-                left: 65%;
+                top: 28%;
+                left: 68%;
             }
             #spain{
                 position: absolute;
                 height: 3vw;
                 width: 3vw;
-                top: 29%;
-                left: 39.5%; 
+                top: 25%;
+                left: 43%;
         }
 	}
     </style>
@@ -449,9 +444,9 @@
             <p id = 'lt-landing'>CORONAVIRUS</p>
             <p id = 'lt1-landing'>scroll down to learn more</p>
         </section> 
-
+        <p id = 'hotspots-title'>Hotspots</p>
         <section id = 'hotspots'>
-            <p id = 'hotspots-title'>Hotspots</p>
+            
             <img id = "hotspots-img" src = "{% static 'images/World mapCOVID.png' %}">
             {% for i in hotspots %}
                 {%if i.cd == US%}
@@ -496,23 +491,25 @@
         <section id = 'live-status'>
                 <p id = 'status-title'>Live Status</p>
             <div class="container">
-                <ul class="responsive-table" id = 'table-l'>
-                    <li class="table-header">
-                        <div class="col col-1">Location</div>
-                        <div class="col col-2">Deaths</div>
-                        <div class="col col-3">Affected</div>
-                        <div class="col col-4">Recovered</div>
-                    </li>
-                    {% for r in records %}
-                        <li class="table-row">
-                            <div class="col col-1" data-label="Country">{{ r.cd }}</div>
-                            <div class="col col-2" data-label="Deaths">{{ r.d }}</div>
-                            <div class="col col-3" data-label="Affected">{{ r.cn }}</div>
-                            <div class="col col-4" data-label="Recovered">{{ r.r }}</div>
+                <div class="scroll">
+                    <ul class="responsive-table" id = 'table-l'>
+                        <li class="table-header">
+                            <div class="col col-1">Location</div>
+                            <div class="col col-2">Affected</div>
+                            <div class="col col-3">Deaths</div>
+                            <div class="col col-4">Recovered</div>
                         </li>
-                    {% endfor %}    
-                </ul>
-              </div>
+                        {% for r in records %}
+                            <li class="table-row">
+                                <div class="col col-1" data-label="Country" >{{ r.cd }}</div>
+                                <div class="col col-2" data-label="Affected">{{ r.cn }}</div>
+                                <div class="col col-3" data-label="Deaths">{{ r.d }}</div>
+                                <div class="col col-4" data-label="Recovered">{{ r.r }}</div>
+                            </li>
+                        {% endfor %}    
+                    </ul>
+                </div>    
+            </div>
             <p id = 'search-text'>Search country</p>
 
         </section>
