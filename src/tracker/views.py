@@ -3,6 +3,4 @@ from tracker.utils import getData, uploadToDb
 from .models import Livedata
 def home(request):
     uploadToDb.upload()
-    context = getData.contextPass()
-    hotspots = getData.topCountries()
-    return render(request,"index.html",{'records': context, 'hotspots': hotspots})
+    return render(request,"index.html",{'records': getData.contextPass(), 'hotspots': getData.topCountries()})

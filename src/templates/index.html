@@ -31,16 +31,7 @@
         body
         {
             overflow-x: hidden; 
-        }
-        div.scroll { 
-                margin:4px, 4px; 
-                padding:4px; 
-                width: 750px; 
-                height: 510px; 
-                overflow-x: hidden; 
-                overflow-x: auto; 
-                text-align:justify; 
-            } 
+        } 
         #Landing{
             margin-top: -3%;
             position: relative;
@@ -84,7 +75,7 @@
             font-size: 5vw;
             left: 10%;
             color: #433E3E;  
-            padding-top: 10%;  
+            margin-top: -20%; 
             margin-bottom: 10%;
         }
         #symptoms-title{
@@ -140,10 +131,20 @@
             max-width: 750px;
             margin-left: auto;
             margin-right: auto;
-            padding-left: 10px;
+            padding-left: 13px;
             padding-right: 10px;
+            margin-top: 20%;
         }
 
+        div.scroll { 
+                margin-left: -3px;
+                padding:4px; 
+                width: 733px; 
+                height: 510px; 
+                overflow-x: hidden; 
+                overflow-x: auto; 
+                text-align:justify; 
+            }
 
         .responsive-table li {
             border-radius: 3px;
@@ -237,6 +238,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-top: 20%;
             }
 
             .search-bar {
@@ -309,8 +311,7 @@
                 margin-right: auto;
                 padding-left: 80px;
                 padding-right: 10px;
-            }
-
+            } 
         @media only screen and (max-width: 760px)  {
 
             #search-text{
@@ -323,6 +324,7 @@
                 padding-left: 25%;
                 justify-self: center;
                 align-self: center;
+                margin-top: -32%;
             }
             #prevention-title{
                 padding-left: 25%;
@@ -333,6 +335,15 @@
             .grid-container {
                 display: block;
                 margin-left: 1%;
+            }
+            div.scroll{
+                margin:4px, 4px; 
+                padding:4px; 
+                width: 101%; 
+                height: 510px; 
+                overflow-x: hidden; 
+                overflow-x: auto; 
+                text-align:justify;  
             }
             #p1-img{
                 position: relative;
@@ -367,7 +378,7 @@
                 padding-left: 5%;
             }
             #hotspots-img{
-                margin-bottom: 20%;
+                margin-bottom: -8%;
             }
             #symptoms-title{
                 padding-left: 25%;
@@ -376,23 +387,23 @@
             #covid-landing{
                 padding-left: 5%;
                 font-size: 8vw;
+                margin-top: 50%;
             }
             #lt-landing{
-                margin-top: -7%;
+                margin-top: 45%;
                 padding-left: 5%;
                 font-size: 8vw;
             }#lt1-landing{
-                margin-top: -13%;
+                margin-top: 45%;
                 padding-left: 6%;
                 font-size: 4vw;
             }
             #hotspots-title{
                 padding-left: 26%;
-                margin-top: -5%;
+                margin-top: 20%;
             }
             #landing-img{
-                height: 120vw;
-                width: 120vw;
+                position: relative;
             }
             #sym-mob{
                 height: 25vw;
@@ -432,18 +443,58 @@
                 width: 3vw;
                 top: 25%;
                 left: 43%;
+            }
+            #symptoms{
+                margin-top: 50%;
+            }
+            #landing-img {
+                position: relative;
+                height: auto;
+                width: 120vw;
+                margin-left: -60px;
+            }
+            .content{
+                margin-top: 35%;
+                margin-left: 1.25%;
+            }
+            .container{
+                margin-top: 40%;
+            }
         }
-	}
     </style>
 
     <body onload='main()'>
 
         <section id = 'Landing'>
-            <img id = "landing-img" src = "{% static 'images/Landing.png' %}">
+            <picture>
+                <source media = "(min-width: 720px)" srcset="{% static 'images/Landing.png' %}">
+                <source id = 'lan-mob' media = "(max-width: 720px)" srcset="{% static 'images/l-m.png' %}">
+                <img id = "landing-img" src = "{% static 'images/Landing.png' %}">    
+            </picture>
             <p id = 'covid-landing'>STOP</p>
             <p id = 'lt-landing'>CORONAVIRUS</p>
             <p id = 'lt1-landing'>scroll down to learn more</p>
         </section> 
+
+        <section id = 'symptoms'>
+            <p id = 'symptoms-title'>Symptoms</p> 
+            <picture>
+                <source media = "(min-width: 720px)" srcset="{% static 'images/Symptoms.svg' %}">
+                <source id = 'sym-mob' media = "(max-width: 720px)" srcset="{% static 'images/s-m.png' %}">
+                <img id = "symptoms-img" src = "{% static 'images/Symptoms.svg' %}">    
+            </picture>
+        </section>    
+            
+        <section id = 'prevention'>
+            <p id = 'prevention-title'>Prevention</p> 
+            <div class="grid-container">
+                <img id = "p1-img" src = "{% static 'images/p1.svg' %}">     
+                <img id = "p2-img" src = "{% static 'images/p2.svg' %}">   
+                <img id = "p3-img" src = "{% static 'images/p3.svg' %}">   
+                <img id = "p4-img" src = "{% static 'images/p4.svg' %}">  
+            </div>
+        </section>
+
         <p id = 'hotspots-title'>Hotspots</p>
         <section id = 'hotspots'>
             
@@ -466,53 +517,6 @@
                 {% endif %}
             {% endfor %}
         </section>
-
-        <section id = 'symptoms'>
-            <p id = 'symptoms-title'>Symptoms</p> 
-            <picture>
-                <source media = "(min-width: 720px)" srcset="{% static 'images/Symptoms.svg' %}">
-                <source id = 'sym-mob' media = "(max-width: 720px)" srcset="{% static 'images/s-m.png' %}">
-                <img id = "symptoms-img" src = "{% static 'images/Symptoms.svg' %}">    
-        
-            </picture>
-        </section>    
-            
-
-        <section id = 'prevention'>
-            <p id = 'prevention-title'>Prevention</p> 
-            <div class="grid-container">
-                <img id = "p1-img" src = "{% static 'images/p1.svg' %}">     
-                <img id = "p2-img" src = "{% static 'images/p2.svg' %}">   
-                <img id = "p3-img" src = "{% static 'images/p3.svg' %}">   
-                <img id = "p4-img" src = "{% static 'images/p4.svg' %}">  
-            </div>
-        </section>
-
-        <section id = 'live-status'>
-                <p id = 'status-title'>Live Status</p>
-            <div class="container">
-                <div class="scroll">
-                    <ul class="responsive-table" id = 'table-l'>
-                        <li class="table-header">
-                            <div class="col col-1">Location</div>
-                            <div class="col col-2">Affected</div>
-                            <div class="col col-3">Deaths</div>
-                            <div class="col col-4">Recovered</div>
-                        </li>
-                        {% for r in records %}
-                            <li class="table-row">
-                                <div class="col col-1" data-label="Country" >{{ r.cd }}</div>
-                                <div class="col col-2" data-label="Affected">{{ r.cn }}</div>
-                                <div class="col col-3" data-label="Deaths">{{ r.d }}</div>
-                                <div class="col col-4" data-label="Recovered">{{ r.r }}</div>
-                            </li>
-                        {% endfor %}    
-                    </ul>
-                </div>    
-            </div>
-            <p id = 'search-text'>Search country</p>
-
-        </section>
         <section class="content">
             <div class="search-bar">
               <input 
@@ -526,6 +530,31 @@
                 <i class="fas fa-search"></i>
               </button>
             </div>
-          </section>
+        </section>
+        <section id = 'live-status'>
+                <p id = 'status-title'>Live Status</p>
+            <div class="container">
+                <ul class="responsive-table" id = 'table-l'>
+                    <li class="table-header">
+                        <div class="col col-1">Location</div>
+                        <div class="col col-2">Affected</div>
+                        <div class="col col-3">Deaths</div>
+                        <div class="col col-4">Recovered</div>
+                    </li>
+                    <div class="scroll">
+                        {% for r in records %}
+                            <li class="table-row">
+                                <div class="col col-1" data-label="Country" >{{ r.cd }}</div>
+                                <div class="col col-2" data-label="Affected">{{ r.cn }}</div>
+                                <div class="col col-3" data-label="Deaths">{{ r.d }}</div>
+                                <div class="col col-4" data-label="Recovered">{{ r.r }}</div>
+                            </li>
+                        {% endfor %}    
+                    </div>
+                </ul>    
+            </div>
+
+        </section>
+        
     </body>
 </html>
