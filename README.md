@@ -1,5 +1,5 @@
 # Artemis
-A website that provides live stats for tracking casulties due to COVID-19.
+A website that provides information for tracking COVID-19 spread.
 
 ## Aim of the project
 The goal of this project is to make the process of monitoring the spread of COVID-19 less cumbersome.
