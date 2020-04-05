@@ -24,7 +24,7 @@ def upload():
         cursor = conn.cursor()
         cursor.execute("DELETE FROM tracker_livedata")
         for i in range(size):
-            cursor.execute("INSERT INTO tracker_livedata (country, dead, confirmed, recovered) VALUES (%s,%s,%s,%s);",
+            cursor.execute("INSERT INTO trackerr_livedata (country, dead, confirmed, recovered) VALUES (%s,%s,%s,%s);",
             (country[i],death[i],confirmed[i],recovered[i]))
     except psycopg2.InterfaceError as exc:
         print (exc.message)

@@ -1,12 +1,6 @@
 import requests, json
 import psycopg2
-
-# Append dictionary items into a list
-def appendList(value,death, confirmed, recovered, key, country):
-    death = death.append(int(value['deaths'])) 
-    confirmed = confirmed.append(int(value['confirmed']))
-    recovered = recovered.append(int(value['recovered']))
-    country = country.append(key)
+import itertools
 
 # Generate a list with the fields zipped together
 def getJSON():
@@ -15,19 +9,19 @@ def getJSON():
     recovered = []
     country = []
 
-    url = "https://pomber.github.io/covid19/timeseries.json"
+    url = "https://api.thevirustracker.com/free-api?countryTotals=ALL"
     r = requests.get(url)
-
-    with open('../src/timeseries.json',"w") as outfile:
+    with open('timeseries.json',"w") as outfile:
         json.dump(r.json(), outfile)
-    
-    with open('../src/timeseries.json') as json_file: 
-        data = json.load(json_file) 
-
-    for key,value in sorted(data.items()): 
-        appendList(value[-1],death, confirmed, recovered, key, country)   
-
-    # Sort lists based on highest no. of deaths    
+    with open('timeseries.json') as json_file: 
+        data = json.load(json_file)  
+    data = data['countryitems'][0] 
+    data = dict(itertools.islice(data.items(), (len(data) - 1)))   
+    for value in data.values():
+        death.append(value['total_deaths'])  
+        confirmed.append(value['total_cases'])
+        recovered.append(value['total_recovered'])
+        country.append(value['title'])
     zipped = zip(confirmed,death,recovered,country) 
 
     return sorted(zipped, reverse = True)
@@ -41,11 +35,12 @@ def contextPass():
 
     # Open connection to database 
     conn = psycopg2.connect(
-                    host = "localhost",
+                    host = "ec2-54-159-112-44.compute-1.amazonaws.com",
                     port="5432",
-                    database="coronadb", 
-                    user="postgres", 
-                    password="G0odBy3C0rona")
+                    database="d9efm92keef88s", 
+                    user="qanproijmxavgo", 
+                    password="b78743e57b082c15d8ac6282f49adc105123b22e7adf03879514ebe4ef6355d4")
+
 
     conn.set_session(autocommit=True)
     
@@ -53,7 +48,7 @@ def contextPass():
     cursor = conn.cursor()
 
     # Execute queries
-    cursor.execute("SELECT country,dead,confirmed,recovered FROM tracker_livedata")
+    cursor.execute("SELECT country,dead,confirmed,recovered FROM trackerr_livedata")
     record = cursor.fetchall()
     records = []
     top = []
