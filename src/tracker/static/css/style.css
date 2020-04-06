@@ -220,7 +220,7 @@ div.scroll {
 .content {
   background-color: #ffffff;
   width: 70vw;
-  padding-left: 27%;
+  padding-left: 29%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -301,6 +301,12 @@ div.scroll {
   padding-right: 10px;
 }
 
+#charts {
+    margin-top: 20%;
+    height: 30%;
+    width: 70%;
+    padding-left: 24.5%;
+}
 @media only screen and (max-width: 760px) {
   #search-text {
     font-size: 7.5vw;
@@ -447,5 +453,33 @@ div.scroll {
   }
   .container {
     margin-top: 40%;
+  }
+  .responsive-table .col-1 {
+    flex-basis: 40%;
+    text-align: left;
+  }
+  .responsive-table .col-2 {
+    flex-basis: 10%;
+    text-align: right;
+  }
+  .responsive-table .col-3 {
+    flex-basis: 10%;
+    text-align: right;
+  }
+  .responsive-table .col-4 {
+    flex-basis: 10%;
+    text-align: right;
+  }
+  #location {
+    font-size: 80%;
+  }
+  #deaths {
+    font-size: 80%;
+  }
+  #affected {
+    font-size: 80%;
+  }
+  #recovered {
+    font-size: 80%;
   }
 }

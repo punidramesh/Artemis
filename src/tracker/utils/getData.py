@@ -35,11 +35,11 @@ def contextPass():
 
     # Open connection to database 
     conn = psycopg2.connect(
-                    host = "ec2-54-159-112-44.compute-1.amazonaws.com",
-                    port="5432",
-                    database="d9efm92keef88s", 
-                    user="qanproijmxavgo", 
-                    password="b78743e57b082c15d8ac6282f49adc105123b22e7adf03879514ebe4ef6355d4")
+                        host = "localhost",
+                        port="5432",
+                        database="coronadb", 
+                        user="postgres", 
+                        password="G0odBy3C0rona")
 
 
     conn.set_session(autocommit=True)
@@ -48,7 +48,7 @@ def contextPass():
     cursor = conn.cursor()
 
     # Execute queries
-    cursor.execute("SELECT country,dead,confirmed,recovered FROM trackerr_livedata")
+    cursor.execute("SELECT country,dead,confirmed,recovered FROM tracker_livedata")
     record = cursor.fetchall()
     records = []
     top = []
