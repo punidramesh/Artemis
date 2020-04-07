@@ -11,49 +11,114 @@
     <link rel="stylesheet" href="{% static 'css/Chart.min.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Candal&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'><link rel="stylesheet" href="./style.css">
+    
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src = "{% static 'js/Chart.min.js' %}"></script>
     <script>
-        $(document).ready(function(){
-            var ctx = document.getElementById('myChart');
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: label,
-                    datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
+        var endpoint = 'get-data'
+        var dbdata = []
+        $.ajax({
+            method: "GET",
+            url: endpoint,
+            success: function(data){
+                var confirmed = data.confirmed
+                var dead = data.dead
+                var recovered = data.recovered
+                var dblabel = data.date
+                console.log(dblabel)
+                var ctx = document.getElementById('confirmed-chart');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dblabel,
+                        datasets: [{
+                            label: 'No. of Confirmed cases',
+                            data: confirmed,
+                            backgroundColor: [
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
                         }]
                     }
-                }
-            });
-        });
+                });
+                var ctx = document.getElementById('dead-chart');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dblabel,
+                        datasets: [{
+                            label: 'No. of Deaths',
+                            data: dead,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                });
+                var ctx = document.getElementById('recovered-chart');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dblabel,
+                        datasets: [{
+                            label: 'No. of Recovered cases',
+                            data: recovered,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    }
+                });
+            },
+            error: function(error_data){
+                console.log("error"),
+                console.log(error_data)
+            }
+        })
     </script>
+        
     <body>
 
         <section id = 'Landing'>
@@ -146,7 +211,17 @@
             </div>
         </section>
         <section id = 'charts'>
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <div class = "grid-container1">
+                <div class="chart-container" style="position: relative; margin-top: 20%;height:30%; width:50%">
+                    <canvas id="confirmed-chart" width="200" height="100"></canvas>
+                </div>
+                <div class="chart-container" style="position: relative; height:30%; width:50%">
+                    <canvas id="dead-chart" width="200" height="100"></canvas>
+                </div>
+                <div class="chart-container" style="position: relative; height:30%; width:50%">
+                    <canvas id="recovered-chart" width="200" height="100"></canvas>
+                </div>
+            </div>   
         </section>   
     </body>
 </html>

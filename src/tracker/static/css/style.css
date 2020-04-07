@@ -300,12 +300,10 @@ div.scroll {
   padding-left: 80px;
   padding-right: 10px;
 }
-
-#charts {
-    margin-top: 20%;
-    height: 30%;
-    width: 70%;
-    padding-left: 24.5%;
+.grid-container1{
+    vertical-align: middle;
+    display: flex
+    
 }
 @media only screen and (max-width: 760px) {
   #search-text {

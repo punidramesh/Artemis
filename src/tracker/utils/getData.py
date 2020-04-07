@@ -24,20 +24,13 @@ def getJSON():
             recovered.append(value['total_recovered'])
             country.append(value['title'])
         zipped = zip(confirmed,death,recovered,country) 
-
         return sorted(zipped, reverse = True)
     except ValueError:  # includes simplejson.decoder.JSONDecodeError
         print ('Decoding JSON has failed') 
         raise ValueError 
 
-def contextPass():
-
-    death = []
-    confirmed = []
-    recovered = []
-    country = []
-
-    # Open connection to database 
+def connect():
+    # Open connection to database
     conn = psycopg2.connect(
                         host = "localhost",
                         port="5432",
@@ -49,7 +42,17 @@ def contextPass():
     conn.set_session(autocommit=True)
     
     # Cursor
-    cursor = conn.cursor()
+    return conn.cursor()
+
+def contextPass():
+
+    death = []
+    confirmed = []
+    recovered = []
+    country = []
+
+    # Cursor
+    cursor = connect()
 
     # Execute queries
     cursor.execute("SELECT country,dead,confirmed,recovered FROM tracker_livedata")
@@ -79,3 +82,28 @@ def topCountries():
     top = top[0:5] 
     dict['countries'] = top  
     return dict 
+
+def getTimeline(parameter):
+    cursor = connect()
+    cursor.execute("SELECT dead FROM tracker_globalstats")
+    dead = cursor.fetchall()
+    cursor.execute("SELECT date FROM tracker_globalstats")
+    date = cursor.fetchall()
+    cursor.execute("SELECT confirmed FROM tracker_globalstats")
+    confirmed = cursor.fetchall()   
+    cursor.execute("SELECT recovered FROM tracker_globalstats")
+    recovered = cursor.fetchall()      
+    for i in range(len(dead)):
+        dead[i] = int(dead[i][0])
+        confirmed[i] = int(confirmed[i][0])
+        recovered[i] = int(recovered[i][0])
+        date[i] = str(date[i][0])
+    if parameter == 'dead':
+        return dead   
+    elif parameter == 'confirmed':
+        return confirmed 
+    elif parameter == 'date':
+        return date 
+    elif parameter == 'recovered':
+        return recovered          
+   
