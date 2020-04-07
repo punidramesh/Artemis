@@ -4,27 +4,31 @@ import itertools
 
 # Generate a list with the fields zipped together
 def getJSON():
-    death = []
-    confirmed = []
-    recovered = []
-    country = []
+    try:
+        death = []
+        confirmed = []
+        recovered = []
+        country = []
 
-    url = "https://api.thevirustracker.com/free-api?countryTotals=ALL"
-    r = requests.get(url)
-    with open('timeseries.json',"w") as outfile:
-        json.dump(r.json(), outfile)
-    with open('timeseries.json') as json_file: 
-        data = json.load(json_file)  
-    data = data['countryitems'][0] 
-    data = dict(itertools.islice(data.items(), (len(data) - 1)))   
-    for value in data.values():
-        death.append(value['total_deaths'])  
-        confirmed.append(value['total_cases'])
-        recovered.append(value['total_recovered'])
-        country.append(value['title'])
-    zipped = zip(confirmed,death,recovered,country) 
+        url = "https://api.thevirustracker.com/free-api?countryTotals=ALL"
+        r = requests.get(url)
+        with open('timeseries.json',"w") as outfile:
+            json.dump(r.json(), outfile)
+        with open('timeseries.json') as json_file: 
+            data = json.load(json_file)  
+        data = data['countryitems'][0] 
+        data = dict(itertools.islice(data.items(), (len(data) - 1)))   
+        for value in data.values():
+            death.append(value['total_deaths'])  
+            confirmed.append(value['total_cases'])
+            recovered.append(value['total_recovered'])
+            country.append(value['title'])
+        zipped = zip(confirmed,death,recovered,country) 
 
-    return sorted(zipped, reverse = True)
+        return sorted(zipped, reverse = True)
+    except ValueError:  # includes simplejson.decoder.JSONDecodeError
+        print ('Decoding JSON has failed') 
+        raise ValueError 
 
 def contextPass():
 
