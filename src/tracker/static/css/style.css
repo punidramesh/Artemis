@@ -119,6 +119,7 @@ body {
   padding-left: 13px;
   padding-right: 10px;
   margin-top: 20%;
+  
 }
 
 div.scroll {
@@ -300,10 +301,13 @@ div.scroll {
   padding-left: 80px;
   padding-right: 10px;
 }
-.grid-container1{
-    vertical-align: middle;
-    display: flex
-    
+.heading{ 
+    position: absolute; 
+    color: #433e3e; 
+    margin-top: 10.5%; 
+    left: 10%;
+    font-size: 5vw;
+    font-family: "Candal";
 }
 @media only screen and (max-width: 760px) {
   #search-text {

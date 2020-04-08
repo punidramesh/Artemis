@@ -1,6 +1,7 @@
 import requests, json
 import psycopg2
 import itertools
+from math import log
 
 # Generate a list with the fields zipped together
 def getJSON():
@@ -74,14 +75,34 @@ def contextPass():
 def topCountries():
     records = contextPass()
     top = []
+    dict = {}
     for r in records:
-        dict  = {}
-        dict['cd'] = r['cd']
-        dict['cn'] = r['cn']
-        top.append(dict)
+        top.append(r['cd'])
     top = top[0:5] 
+    top.append('China')
+    top.append('India')
     dict['countries'] = top  
-    return dict 
+    return dict
+
+def getTopCountryHistory(parameter):
+    url = "https://pomber.github.io/covid19/timeseries.json"
+    r = requests.get(url).json()
+    top = list(topCountries()['countries'])
+    finallist = [] 
+    finaltop = []
+    for key,value in sorted(r.items()): 
+        confirmedlist = []
+        if key in top or key == "US":
+            finaltop.append(key)
+            for i in value:
+                if int(i['confirmed']) >= 50:
+                    confirmedlist.append(log(int(i['confirmed'])))  
+            finallist.append(confirmedlist)
+    if parameter == 'confirmed':        
+        return finallist
+    elif parameter == 'country':
+        return finaltop         
+
 
 def getTimeline(parameter):
     cursor = connect()

@@ -22,10 +22,18 @@
             url: endpoint,
             success: function(data){
                 var confirmed = data.confirmed
+                var logConfirmed = []
+                var i
+                for(i = 0 ; i < confirmed.length; i++){
+                    logConfirmed[i] = Math.log(confirmed[i])
+                }
                 var dead = data.dead
                 var recovered = data.recovered
                 var dblabel = data.date
-                console.log(dblabel)
+                var countries = data.topcountry
+                var countryConfirmed = data.topcountry_confirmed
+                var clabel = data.confirmed_labels
+                console.log(Math.log(dblabel))
                 var ctx = document.getElementById('confirmed-chart');
                 var myChart = new Chart(ctx, {
                     type: 'line',
@@ -36,79 +44,130 @@
                             data: confirmed,
                             backgroundColor: [
                                 'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
                                 
                             ],
                             borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
+                                'rgba(255, 189, 132, 1)',
+                                
                             ],
-                            borderWidth: 1
-                        }]
+                            
+                        }],
+                    },
+                    options: {
+                        elements: {
+                            point:{
+                                radius: 0
+                            }
+                        }
                     }
                 });
-                var ctx = document.getElementById('dead-chart');
+                var ctx = document.getElementById('log-confirmed-chart');
                 var myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: dblabel,
                         datasets: [{
-                            label: 'No. of Deaths',
-                            data: dead,
+                            label: 'Trend of confirmed cases',
+                            data: logConfirmed,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
                             ],
                             borderColor: [
                                 'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
+                            ],                            
                         }]
+                    },
+                    options: {
+                        elements: {
+                            point:{
+                                radius: 0
+                            }
+                        }
                     }
                 });
-                var ctx = document.getElementById('recovered-chart');
+                var ctx = document.getElementById('countries-chart');
                 var myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: dblabel,
+                        labels: clabel,
                         datasets: [{
-                            label: 'No. of Recovered cases',
-                            data: recovered,
+                            label: [countries[0]],
+                            data: countryConfirmed[0],
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
+                                'rgba(255, 255, 255, 0)',    
                             ],
                             borderColor: [
                                 'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
+                            ], 
+                        },
+                        { 
+                        label: [countries[1]],
+                            data: countryConfirmed[1],
+                            backgroundColor: [
+                                'rgba(255, 255, 255, 0)',    
                             ],
-                            borderWidth: 1
-                        }]
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                            ], 
+                        },
+                        { 
+                        label: [countries[2]],
+                            data: countryConfirmed[2],
+                            backgroundColor: [
+                                'rgba(255, 255, 255, 0)',    
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                            ],                            
+                        },
+                        { 
+                        label: [countries[3]],
+                            data: countryConfirmed[3],
+                            backgroundColor: [
+                                'rgba(255, 255, 255, 0)',    
+                            ],
+                            borderColor: [
+                                'rgba(255, 159, 64, 1)',
+                            ],                            
+                        },
+                        { 
+                        label: [countries[4]],
+                            data: countryConfirmed[4],
+                            backgroundColor: [
+                                'rgba(255, 255, 255, 0)',    
+                            ],
+                            borderColor: [
+                                'rgba(1, 10, 255, 1)',
+                            ], 
+                        },
+                        { 
+                        label: [countries[5]],
+                            data: countryConfirmed[5],
+                            backgroundColor: [
+                                'rgba(255, 255, 255, 0)',    
+                            ],
+                            borderColor: [
+                                'rgba(125, 60, 255, 1)',
+                            ],                            
+                        },
+                        { 
+                        label: [countries[6]],
+                            data: countryConfirmed[6],
+                            backgroundColor: [
+                                'rgba(255, 255, 255, 0)',    
+                            ],
+                            borderColor: [
+                                'rgba(249, 197, 189, 1)' ,
+                            ],                            
+                                                       
+                        }]                                                           
+                    },
+                    options: {
+                        elements: {
+                            point:{
+                                radius: 0
+                            }
+                        }
                     }
                 });
             },
@@ -209,17 +268,20 @@
                     </div>
                 </ul>    
             </div>
+        <p style = "position: absolute; font-family: Candal; color: #433e3e; margin-top: 10.5%; left: 10%;font-size: 5vw;">Analysis</p>
         </section>
         <section id = 'charts'>
+            <div class = "flex-container" style = "margin-top: 30%; margin-left: 5%; margin-right: 5%; vertical-align: middle; display: flex; gap: 10%; justify-content: center;flex-wrap: wrap;">
+                <div class="chart-container" style="position: relative;height:30%; width:50%">
+                    <canvas id="confirmed-chart" width="200" height="150"></canvas>
+                </div>
+                <div class="chart-container" style="position: relative; height:30%; width:50%">
+                    <canvas id="log-confirmed-chart" width="200" height="150"></canvas>
+                </div>
+            </div>  
             <div class = "grid-container1">
-                <div class="chart-container" style="position: relative; margin-top: 20%;height:30%; width:50%">
-                    <canvas id="confirmed-chart" width="200" height="100"></canvas>
-                </div>
                 <div class="chart-container" style="position: relative; height:30%; width:50%">
-                    <canvas id="dead-chart" width="200" height="100"></canvas>
-                </div>
-                <div class="chart-container" style="position: relative; height:30%; width:50%">
-                    <canvas id="recovered-chart" width="200" height="100"></canvas>
+                    <canvas id="countries-chart" width="200" height="100"></canvas>
                 </div>
             </div>   
         </section>   

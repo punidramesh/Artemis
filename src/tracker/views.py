@@ -12,11 +12,16 @@ class Chartdata(APIView):
         date = getData.getTimeline('date')
         recovered = getData.getTimeline('recovered')
         confirmed = getData.getTimeline('confirmed')
+        country = getData.getTopCountryHistory('country')
+        country_confirmed = getData.getTopCountryHistory('confirmed')
         data = {
             "dead": dead,
             "recovered": recovered,
             "confirmed": confirmed,
             "date": date,
+            "topcountry": country,
+            "topcountry_confirmed": country_confirmed,
+            "confirmed_labels": list(range(50, 50 + (len(country_confirmed[0])))) 
         }
         return Response(data)
 
