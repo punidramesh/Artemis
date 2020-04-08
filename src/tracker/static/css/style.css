@@ -4,9 +4,9 @@
   box-sizing: border-box;
   }
   :root {
-  --clr-primary: #552944;
-  --clr-body: rgb(219, 182, 18);
-  --clr-bg: #ddd;
+    --clr-primary: #552944;
+    --clr-body: rgb(219, 182, 18);
+    --clr-bg: #ddd;
   }
   html,
   body {
