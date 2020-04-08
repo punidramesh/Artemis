@@ -80,14 +80,13 @@ def topCountries():
         top.append(r['cd'])
     top = top[0:5] 
     top.append('China')
-    top.append('India')
-    dict['countries'] = top  
-    return dict
+    top.append('India')  
+    return top
 
 def getTopCountryHistory(parameter):
     url = "https://pomber.github.io/covid19/timeseries.json"
     r = requests.get(url).json()
-    top = list(topCountries()['countries'])
+    top = topCountries()
     finallist = [] 
     finaltop = []
     for key,value in sorted(r.items()): 

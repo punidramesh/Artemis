@@ -34,7 +34,6 @@
                 var countries = data.topcountry
                 var countryConfirmed = data.topcountry_confirmed
                 var clabel = data.confirmed_labels
-                console.log(Math.log(dblabel))
                 var ctx = document.getElementById('confirmed-chart');
                 var myChart = new Chart(ctx, {
                     type: 'line',
@@ -284,9 +283,10 @@
             <div class = "grid-container1"><br />
                 <p style = "position: relative; font-family: Candal; color: #433e3e; margin-top: 10.5%;font-size: 3vw;margin-bottom: 5%;">Top countries confirmed cases trend</p>
                 
-                <div class="chart-container">
+                <div class="chart-container1">
                     <canvas id="countries-chart" width="200" height="100"></canvas>
                 </div>
+
             </div>   
         </section>   
     </body>
