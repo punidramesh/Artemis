@@ -7,10 +7,11 @@
     <head>
         <title>Coronavirus</title>
     </head>
+    
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/Chart.min.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Candal&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'><link rel="stylesheet" href="./style.css">
+    <!--link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'><link rel="stylesheet" href="./style.css"-->
     
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src = "{% static 'js/Chart.min.js' %}"></script>
@@ -268,19 +269,22 @@
                     </div>
                 </ul>    
             </div>
-        <p style = "position: absolute; font-family: Candal; color: #433e3e; margin-top: 10.5%; left: 10%;font-size: 5vw;">Analysis</p>
+        <p id = 'analysis'>Analysis</p>
         </section>
         <section id = 'charts'>
-            <div class = "flex-container" style = "margin-top: 30%; margin-left: 5%; margin-right: 5%; vertical-align: middle; display: flex; gap: 10%; justify-content: center;flex-wrap: wrap;">
-                <div class="chart-container" style="position: relative;height:30%; width:50%">
+            <div class = "flex-container">
+                <div class="chart-container">
                     <canvas id="confirmed-chart" width="200" height="150"></canvas>
                 </div>
-                <div class="chart-container" style="position: relative; height:30%; width:50%">
+                <div class="chart-container">
                     <canvas id="log-confirmed-chart" width="200" height="150"></canvas>
                 </div>
             </div>  
-            <div class = "grid-container1">
-                <div class="chart-container" style="position: relative; height:30%; width:50%">
+            
+            <div class = "grid-container1"><br />
+                <p style = "position: relative; font-family: Candal; color: #433e3e; margin-top: 10.5%;font-size: 3vw;margin-bottom: 5%;">Top countries confirmed cases trend</p>
+                
+                <div class="chart-container">
                     <canvas id="countries-chart" width="200" height="100"></canvas>
                 </div>
             </div>   
