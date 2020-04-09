@@ -199,7 +199,7 @@
                                 },
                                 scaleLabel: {
                                     display: true,
-                                    labelString: 'No. of days after 50th patient'
+                                    labelString: 'Day 0 corresponds to the day the 100th covid-19 confirmed case was recorded.'
                                 }
                             }],
                             yAxes: [{
@@ -296,10 +296,10 @@
                     <div class="scroll">
                         {% for r in records %}
                             <li class="table-row">
-                                <div class="col col-1" id = 'cnt-dt' data-label="Location" >{{ r.cd }}</div>
-                                <div class="col col-2" id = 'aff-dt' data-label="Affected">{{ r.cn }}</div>
-                                <div class="col col-3" id = 'dt-dt' data-label="Deaths">{{ r.d }}</div>
-                                <div class="col col-4" id = 'rc-dt' data-label="Recovered">{{ r.r }}</div>
+                                <div class="col col-1" id = 'cnt-dt' data-label="Location" >{{ r.country }}</div>
+                                <div class="col col-2" id = 'aff-dt' data-label="Affected">{{ r.confirmed }}</div>
+                                <div class="col col-3" id = 'dt-dt' data-label="Deaths">{{ r.dead }}</div>
+                                <div class="col col-4" id = 'rc-dt' data-label="Recovered">{{ r.recovered }}</div>
                             </li>
                         {% endfor %}    
                     </div>
