@@ -15,14 +15,10 @@
     
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src = "{% static 'js/Chart.min.js' %}"></script>
+    <input type="hidden" id="myVar" name="variable" value="{{ chartdata }}">
     <script>
-        var endpoint = 'get-data'
-        var dbdata = []
-        $.ajax({
-            method: "GET",
-            url: endpoint,
-            success: function(data){
-                var confirmed = data.confirmed
+        $.getJSON('get-data', function(data) {
+            var confirmed = data.confirmed
                 var logConfirmed = []
                 var i
                 for(i = 0 ; i < confirmed.length; i++){
@@ -34,13 +30,15 @@
                 var countries = data.topcountry
                 var countryConfirmed = data.topcountry_confirmed
                 var clabel = data.confirmed_labels
+                console.log(countries)
+                console.log(logConfirmed)
                 var ctx = document.getElementById('confirmed-chart');
                 var myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: dblabel,
                         datasets: [{
-                            label: 'No. of Confirmed cases',
+                            label: 'No. of confirmed cases worldwide',
                             data: confirmed,
                             backgroundColor: [
                                 'rgba(255, 159, 64, 0.2)',
@@ -58,6 +56,20 @@
                             point:{
                                 radius: 0
                             }
+                        },
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    drawOnChartArea: false
+                                }
+                                
+                            }],
+                            yAxes: [{
+                                gridLines: {
+                                    drawOnChartArea: false
+                                }
+                                
+                            }]
                         }
                     }
                 });
@@ -67,7 +79,7 @@
                     data: {
                         labels: dblabel,
                         datasets: [{
-                            label: 'Trend of confirmed cases',
+                            label: 'Rate of increase of new cases worldwide',
                             data: logConfirmed,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
@@ -82,6 +94,18 @@
                             point:{
                                 radius: 0
                             }
+                        },
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    drawOnChartArea: false
+                                }
+                            }],
+                            yAxes: [{
+                                gridLines: {
+                                    drawOnChartArea: false
+                                }   
+                            }]
                         }
                     }
                 });
@@ -167,17 +191,30 @@
                             point:{
                                 radius: 0
                             }
+                        },
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    drawOnChartArea: false
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'No. of days after 50th patient'
+                                }
+                            }],
+                            yAxes: [{
+                                gridLines: {
+                                    drawOnChartArea: false
+                                },
+                                ticks: {
+                                    display: false
+                                } 
+                            }]
                         }
                     }
-                });
-            },
-            error: function(error_data){
-                console.log("error"),
-                console.log(error_data)
-            }
+                });     
         })
     </script>
-        
     <body>
 
         <section id = 'Landing'>
@@ -278,16 +315,11 @@
                 <div class="chart-container">
                     <canvas id="log-confirmed-chart" width="200" height="150"></canvas>
                 </div>
-            </div>  
-            
-            <div class = "grid-container1"><br />
                 <p style = "position: relative; font-family: Candal; color: #433e3e; margin-top: 10.5%;font-size: 3vw;margin-bottom: 5%;">Top countries confirmed cases trend</p>
-                
                 <div class="chart-container1">
-                    <canvas id="countries-chart" width="200" height="100"></canvas>
+                    <canvas id="countries-chart" width="200" height="150"></canvas>
                 </div>
-
-            </div>   
+            </div>  
         </section>   
     </body>
 </html>

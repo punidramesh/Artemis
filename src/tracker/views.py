@@ -4,6 +4,7 @@ from .models import Livedata
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 class Chartdata(APIView):
     authentication_classes = []
     permission_classes = []
@@ -21,10 +22,11 @@ class Chartdata(APIView):
             "date": date,
             "topcountry": country,
             "topcountry_confirmed": country_confirmed,
-            "confirmed_labels": list(range(50, 50 + (len(country_confirmed[0])))) 
+            "confirmed_labels": list(range(0,70,1)) 
         }
         return Response(data)
 
+
 def home(request):
     uploadToDb.upload()
-    return render(request,"index.html",{'records': getData.contextPass(), 'hotspots': getData.topCountries()})
+    return render(request,"index.html",{'records': getData.contextPass(),'hotspots': getData.topCountries()})

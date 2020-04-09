@@ -1,7 +1,7 @@
 import requests, json
 import psycopg2
 import itertools
-from math import log
+from math import log10
 
 # Generate a list with the fields zipped together
 def getJSON():
@@ -94,8 +94,8 @@ def getTopCountryHistory(parameter):
         if key in top or key == "US":
             finaltop.append(key)
             for i in value:
-                if int(i['confirmed']) >= 50:
-                    confirmedlist.append(log(int(i['confirmed'])))  
+                if int(i['confirmed']) >= 100:
+                    confirmedlist.append(log10(int(i['confirmed'])))   
             finallist.append(confirmedlist)
     if parameter == 'confirmed':        
         return finallist
@@ -117,7 +117,7 @@ def getTimeline(parameter):
         dead[i] = int(dead[i][0])
         confirmed[i] = int(confirmed[i][0])
         recovered[i] = int(recovered[i][0])
-        date[i] = str(date[i][0])
+        date[i] = date[i][0][0:(len(date[i][0]) - 3)]
     if parameter == 'dead':
         return dead   
     elif parameter == 'confirmed':
