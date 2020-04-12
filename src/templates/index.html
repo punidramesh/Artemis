@@ -114,6 +114,7 @@
             var ctx = document.getElementById('countries-chart');
             var myChart = new Chart(ctx, {
                 type: 'line',
+                borderWidth: 0.5,
                 data: {
                     labels: clabel,
                     datasets: [{
@@ -201,7 +202,7 @@
                             },
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Day 0 corresponds to the day the 100th covid-19 confirmed case was recorded.'
+                                labelString: 'Day 0 corresponds to day of 100th covid-19 confirmed case'
                             }
                         }],
                         yAxes: [{
@@ -214,7 +215,7 @@
                         }]
                     }
                 }
-            });     
+            }); 
         })
     </script>
     <body>
@@ -307,6 +308,7 @@
                 <div class="chart-container">
                     <canvas id="log-confirmed-chart" width="200" height="150"></canvas>
                 </div>
+                
                 <p style = "position: relative; font-family: Candal; color: #433e3e; margin-top: 10.5%;font-size: 3vw;margin-bottom: 5%;">Top countries confirmed cases trend</p>
                 <div class="chart-container1">
                     <canvas id="countries-chart" width="200" height="150"></canvas>

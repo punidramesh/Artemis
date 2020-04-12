@@ -256,40 +256,33 @@ div.scroll {
   margin-right: 5%;
   vertical-align: middle;
   display: flex;
-  gap: 10%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flex-container1{
+  margin-top: 30%;
+  margin-left: 5%;
+  margin-right: 5%;
+  vertical-align: middle;
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .chart-container {
+  flex: 1;
   position: relative;
-  height: 20%;
-  width: 40%;
+  height: 30%;
+  width: 50%;
+  padding-left: 5%;
 }
 .chart-container1 {
   position: relative;
   height: 40%;
   width: 60%;
 }
-header {
-  text-align: center;
-  padding-top: 100px;
-  margin-bottom: 190px;
-}
 
-header h1 {
-  font: normal 32px/1.5 "Open Sans", sans-serif;
-  color: #3f71ae;
-  padding-bottom: 16px;
-}
-
-header h2 {
-  color: #f05283;
-}
-
-header span {
-  color: #3f71ea;
-}
 
 /* The footer is fixed to the bottom of the page */
 

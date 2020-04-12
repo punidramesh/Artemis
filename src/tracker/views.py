@@ -20,12 +20,9 @@ class Chartdata(APIView):
         }
         return Response(data)
 
-
-
 def home(request,*args,**kwargs):
-    # upload()
+    upload()
     return render(request,"index.html",{
         'records': Livedata.objects.values() ,
-        'hotspots': topCountries()
-        
+        'hotspots': topCountries()   
     })

@@ -63,6 +63,15 @@ def topCountries():
     top.append('India')  
     return top
 
+def recentCountries():
+    records = Livedata.objects.values() 
+    top = []
+    for r in records:
+        if r['country'] != 'India' or r['country'] == 'China':
+            top.append(r['country'])
+    top = top[0:5]   
+    return top
+
 def getTopCountryHistory(parameter):
     url = "https://pomber.github.io/covid19/timeseries.json"
     r = requests.get(url).json()
