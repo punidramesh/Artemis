@@ -3,6 +3,7 @@ from .util import getJSON,getTimeline,getTopCountryHistory,topCountries,upload
 from .models import Livedata
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.http import HttpResponse
 
 class Chartdata(APIView):
     authentication_classes = []
@@ -20,6 +21,11 @@ class Chartdata(APIView):
         return Response(data)
 
 
-def home(request):
-    upload()
-    return render(request,"index.html",{'records': Livedata.objects.values() ,'hotspots': topCountries()})
+
+def home(request,*args,**kwargs):
+    # upload()
+    return render(request,"index.html",{
+        'records': Livedata.objects.values() ,
+        'hotspots': topCountries()
+        
+    })

@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{% static 'css/Chart.min.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Candal&display=swap" rel="stylesheet">
     
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
     <script src="https://kit.fontawesome.com/3da9cc3f09.js" crossorigin="anonymous"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src = "{% static 'js/Chart.min.js' %}"></script>
@@ -20,198 +23,198 @@
         $('html').css('overflow-x', 'initial');
         $.getJSON('get-data', function(data) {
             var confirmed = data.confirmed
-                var logConfirmed = []
-                var i
-                for(i = 0 ; i < confirmed.length; i++){
-                    logConfirmed[i] = Math.log(confirmed[i])
-                }
-                var dead = data.dead
-                var recovered = data.recovered
-                var dblabel = data.date
-                var countries = data.topcountry
-                var countryConfirmed = data.topcountry_confirmed
-                var clabel = data.confirmed_labels
-                var ctx = document.getElementById('confirmed-chart');
-                var myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: dblabel,
-                        datasets: [{
-                            label: 'No. of confirmed cases worldwide',
-                            data: confirmed,
-                            backgroundColor: [
-                                'rgba(255, 159, 64, 0.2)',
-                                
-                            ],
-                            borderColor: [
-                                'rgba(255, 189, 132, 1)',
-                                
-                            ],
+            var logConfirmed = []
+            var i
+            for(i = 0 ; i < confirmed.length; i++){
+                logConfirmed[i] = Math.log(confirmed[i])
+            }
+            var dead = data.dead
+            var recovered = data.recovered
+            var dblabel = data.date
+            var countries = data.topcountry
+            var countryConfirmed = data.topcountry_confirmed
+            var clabel = data.confirmed_labels
+            var ctx = document.getElementById('confirmed-chart');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dblabel,
+                    datasets: [{
+                        label: 'No. of confirmed cases worldwide',
+                        data: confirmed,
+                        backgroundColor: [
+                            'rgba(255, 159, 64, 0.2)',
+                            
+                        ],
+                        borderColor: [
+                            'rgba(255, 189, 132, 1)',
+                            
+                        ],
+                        
+                    }],
+                },
+                options: {
+                    elements: {
+                        point:{
+                            radius: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
                             
                         }],
-                    },
-                    options: {
-                        elements: {
-                            point:{
-                                radius: 0
+                        yAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
                             }
-                        },
-                        scales: {
-                            xAxes: [{
-                                gridLines: {
-                                    drawOnChartArea: false
-                                }
-                                
-                            }],
-                            yAxes: [{
-                                gridLines: {
-                                    drawOnChartArea: false
-                                }
-                                
-                            }]
-                        }
-                    }
-                });
-                var ctx = document.getElementById('log-confirmed-chart');
-                var myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: dblabel,
-                        datasets: [{
-                            label: 'Rate of increase of new cases worldwide',
-                            data: logConfirmed,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                            ],                            
+                            
                         }]
-                    },
-                    options: {
-                        elements: {
-                            point:{
-                                radius: 0
-                            }
-                        },
-                        scales: {
-                            xAxes: [{
-                                gridLines: {
-                                    drawOnChartArea: false
-                                }
-                            }],
-                            yAxes: [{
-                                gridLines: {
-                                    drawOnChartArea: false
-                                }   
-                            }]
-                        }
                     }
-                });
-                var ctx = document.getElementById('countries-chart');
-                var myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: clabel,
-                        datasets: [{
-                            label: [countries[0]],
-                            data: countryConfirmed[0],
-                            backgroundColor: [
-                                'rgba(255, 255, 255, 0)',    
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                            ], 
-                        },
-                        { 
-                        label: [countries[1]],
-                            data: countryConfirmed[1],
-                            backgroundColor: [
-                                'rgba(255, 255, 255, 0)',    
-                            ],
-                            borderColor: [
-                                'rgba(75, 192, 192, 1)',
-                            ], 
-                        },
-                        { 
-                        label: [countries[2]],
-                            data: countryConfirmed[2],
-                            backgroundColor: [
-                                'rgba(255, 255, 255, 0)',    
-                            ],
-                            borderColor: [
-                                'rgba(54, 162, 235, 1)',
-                            ],                            
-                        },
-                        { 
-                        label: [countries[3]],
-                            data: countryConfirmed[3],
-                            backgroundColor: [
-                                'rgba(255, 255, 255, 0)',    
-                            ],
-                            borderColor: [
-                                'rgba(255, 159, 64, 1)',
-                            ],                            
-                        },
-                        { 
-                        label: [countries[4]],
-                            data: countryConfirmed[4],
-                            backgroundColor: [
-                                'rgba(255, 255, 255, 0)',    
-                            ],
-                            borderColor: [
-                                'rgba(1, 10, 255, 1)',
-                            ], 
-                        },
-                        { 
-                        label: [countries[5]],
-                            data: countryConfirmed[5],
-                            backgroundColor: [
-                                'rgba(255, 255, 255, 0)',    
-                            ],
-                            borderColor: [
-                                'rgba(125, 60, 255, 1)',
-                            ],                            
-                        },
-                        { 
-                        label: [countries[6]],
-                            data: countryConfirmed[6],
-                            backgroundColor: [
-                                'rgba(255, 255, 255, 0)',    
-                            ],
-                            borderColor: [
-                                'rgba(249, 197, 189, 1)' ,
-                            ],                            
-                                                       
-                        }]                                                           
-                    },
-                    options: {
-                        elements: {
-                            point:{
-                                radius: 0
-                            }
-                        },
-                        scales: {
-                            xAxes: [{
-                                gridLines: {
-                                    drawOnChartArea: false
-                                },
-                                scaleLabel: {
-                                    display: true,
-                                    labelString: 'Day 0 corresponds to the day the 100th covid-19 confirmed case was recorded.'
-                                }
-                            }],
-                            yAxes: [{
-                                gridLines: {
-                                    drawOnChartArea: false
-                                },
-                                ticks: {
-                                    display: false
-                                } 
-                            }]
+                }
+            });
+            var ctx = document.getElementById('log-confirmed-chart');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dblabel,
+                    datasets: [{
+                        label: 'Rate of increase of new cases worldwide',
+                        data: logConfirmed,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                        ],                            
+                    }]
+                },
+                options: {
+                    elements: {
+                        point:{
+                            radius: 0
                         }
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }   
+                        }]
                     }
-                });     
+                }
+            });
+            var ctx = document.getElementById('countries-chart');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: clabel,
+                    datasets: [{
+                        label: [countries[0]],
+                        data: countryConfirmed[0],
+                        backgroundColor: [
+                            'rgba(255, 255, 255, 0)',    
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                        ], 
+                    },
+                    { 
+                    label: [countries[1]],
+                        data: countryConfirmed[1],
+                        backgroundColor: [
+                            'rgba(255, 255, 255, 0)',    
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                        ], 
+                    },
+                    { 
+                    label: [countries[2]],
+                        data: countryConfirmed[2],
+                        backgroundColor: [
+                             'rgba(255, 255, 255, 0)',    
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                         ],                            
+                    },
+                    { 
+                    label: [countries[3]],
+                        data: countryConfirmed[3],
+                        backgroundColor: [
+                            'rgba(255, 255, 255, 0)',    
+                        ],
+                        borderColor: [
+                            'rgba(255, 159, 64, 1)',
+                        ],                            
+                    },
+                    { 
+                    label: [countries[4]],
+                        data: countryConfirmed[4],
+                        backgroundColor: [
+                            'rgba(255, 255, 255, 0)',    
+                        ],
+                        borderColor: [
+                            'rgba(1, 10, 255, 1)',
+                        ], 
+                    },
+                    { 
+                    label: [countries[5]],
+                        data: countryConfirmed[5],
+                        backgroundColor: [
+                            'rgba(255, 255, 255, 0)',    
+                        ],
+                        borderColor: [
+                            'rgba(125, 60, 255, 1)',
+                        ],                            
+                    },
+                    { 
+                    label: [countries[6]],
+                        data: countryConfirmed[6],
+                        backgroundColor: [
+                            'rgba(255, 255, 255, 0)',    
+                        ],
+                        borderColor: [
+                            'rgba(249, 197, 189, 1)' ,
+                        ],                            
+                                                   
+                    }]                                                           
+                },
+                options: {
+                    elements: {
+                        point:{
+                            radius: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Day 0 corresponds to the day the 100th covid-19 confirmed case was recorded.'
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                display: false
+                            } 
+                        }]
+                    }
+                }
+            });     
         })
     </script>
     <body>
@@ -248,7 +251,6 @@
 
         <p id = 'hotspots-title'>Hotspots</p>
         <section id = 'hotspots'>
-            
             <img id = "hotspots-img" src = "{% static 'images/World mapCOVID.png' %}">
             {% for i in hotspots %}
                 {%if i.cd == US%}
@@ -269,38 +271,29 @@
             {% endfor %}
         </section>
         <section class="content">
-            <div class="search-bar">
-              <input 
-                     type="text" 
-                     class="search-bar__input" 
-                     placeholder="Search country"
-                     aria-label="search"/>
-              <button 
-                      class="search-bar__submit"
-                      aria-label="submit search">
-                <i class="fas fa-search" style = "color:white;"></i>
-              </button>
-            </div>
         </section>
+
         <section id = 'live-status'>
                 <p id = 'status-title'>Live Status</p>
             <div class="container">
-                <ul class="responsive-table" id = 'table-l'>
+                <ul class="responsive-table">
                     <li class="table-header">
                         <div class="col col-1" id = 'location'>Location</div>
                         <div class="col col-2" id = 'affected'>Affected</div>
                         <div class="col col-3" id = 'deaths'>Deaths</div>
                         <div class="col col-4" id = 'recovered'>Recovered</div>
                     </li>
-                    <div class="scroll">
-                        {% for r in records %}
+                    <div class="scroll" id = 'data-table'>
+                        <div id = 'data-row'>
+                            {% for r in records %}
                             <li class="table-row">
                                 <div class="col col-1" id = 'cnt-dt' data-label="Location" >{{ r.country }}</div>
                                 <div class="col col-2" id = 'aff-dt' data-label="Affected">{{ r.confirmed }}</div>
                                 <div class="col col-3" id = 'dt-dt' data-label="Deaths">{{ r.dead }}</div>
                                 <div class="col col-4" id = 'rc-dt' data-label="Recovered">{{ r.recovered }}</div>
                             </li>
-                        {% endfor %}    
+                            {% endfor %}  
+                        </div>     
                     </div>
                 </ul>    
             </div>
@@ -320,6 +313,8 @@
                 </div>
             </div>  
         </section>  
+
+
         <footer class="footer-distributed">
 			<div class="footer-left">
                 <p class="footer-company-about">

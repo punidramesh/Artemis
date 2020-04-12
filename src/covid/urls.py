@@ -20,5 +20,5 @@ from tracker.views import home, Chartdata
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),
-    path('get-data', Chartdata.as_view()),
+    path('get-data', Chartdata.as_view())
 ]

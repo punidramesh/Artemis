@@ -4,22 +4,29 @@ from .models import Livedata, GlobalStats
 from math import log10,log 
 
 # Generate a list with the fields zipped together
-def getJSON():
+def getJSON(parameter):
     try:
         death = []
         confirmed = []
         recovered = []
         country = []
+        code = []
+        itr = -1
         url = "https://api.thevirustracker.com/free-api?countryTotals=ALL"
         data = requests.get(url).json()['countryitems'][0]
         data = dict(itertools.islice(data.items(), (len(data) - 1)))   
         for value in data.values():
+            code.append(value['code'])
             death.append(value['total_deaths'])  
             confirmed.append(value['total_cases'])
             recovered.append(value['total_recovered'])
             country.append(value['title'])
-            zipped = zip(confirmed,death,recovered,country) 
-        return sorted(zipped, reverse = True)
+            zipped = zip(confirmed,death,recovered,country)     
+        if parameter == 0:    
+            return sorted(zipped, reverse = True)
+        elif parameter == 1:
+            zipped = zip(confirmed,country,code) 
+            return sorted(zipped, reverse = True) 
     except ValueError:  # includes simplejson.decoder.JSONDecodeError
         print ('Decoding JSON has failed') 
         raise ValueError 
@@ -27,7 +34,7 @@ def getJSON():
 def upload():
     failsafe = False
     try:
-        livedata = list(getJSON())
+        livedata = list(getJSON(0))
         confirmed,death,recovered,country = zip(*livedata)
         size = len(death) - 1
     except ValueError:   
@@ -74,7 +81,7 @@ def getTopCountryHistory(parameter):
         return finallist
     elif parameter == 'country':
         return finaltop         
-
+ 
 
 def getTimeline(parameter):
     data = GlobalStats.objects.values()
@@ -83,10 +90,10 @@ def getTimeline(parameter):
     recovered = []
     confirmed = []
     for i in data:
-        dead.append(i['dead'])
+        dead.append(int(i['dead']))
         date.append(i['date'][0:(len(i['date']) - 3)])
-        recovered.append(i['recovered'])
-        confirmed.append(i['confirmed'])
+        recovered.append(int(i['recovered']))
+        confirmed.append(int(i['confirmed']))
     if parameter == 'dead':
         return dead   
     elif parameter == 'confirmed':
@@ -94,5 +101,4 @@ def getTimeline(parameter):
     elif parameter == 'date':
         return date 
     elif parameter == 'recovered':
-        return recovered          
-   
+        return recovered      
