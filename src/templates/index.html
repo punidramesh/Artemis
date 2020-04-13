@@ -10,11 +10,9 @@
     
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/Chart.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link href="https://fonts.googleapis.com/css?family=Candal&display=swap" rel="stylesheet">
-    
-    <script src="https://www.amcharts.com/lib/4/core.js"></script>
-    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
-    <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+
     <script src="https://kit.fontawesome.com/3da9cc3f09.js" crossorigin="anonymous"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src = "{% static 'js/Chart.min.js' %}"></script>
@@ -24,12 +22,20 @@
         $.getJSON('get-data', function(data) {
             var confirmed = data.confirmed
             var logConfirmed = []
+            var logRecovered = []
+            var logDead = []
             var i
             for(i = 0 ; i < confirmed.length; i++){
                 logConfirmed[i] = Math.log(confirmed[i])
             }
-            var dead = data.dead
             var recovered = data.recovered
+            for(i = 0 ; i < recovered.length; i++){
+                logRecovered[i] = Math.log(recovered[i])
+            }
+            var dead = data.dead
+            for(i = 0 ; i < dead.length; i++){
+                logDead[i] = Math.log(dead[i])
+            }
             var dblabel = data.date
             var countries = data.topcountry
             var countryConfirmed = data.topcountry_confirmed
@@ -43,11 +49,11 @@
                         label: 'No. of confirmed cases worldwide',
                         data: confirmed,
                         backgroundColor: [
-                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
                             
                         ],
                         borderColor: [
-                            'rgba(255, 189, 132, 1)',
+                            'rgba(255, 99, 132, 1)',
                             
                         ],
                         
@@ -88,6 +94,160 @@
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 1)',
+                        ],                            
+                    }]
+                },
+                options: {
+                    elements: {
+                        point:{
+                            radius: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }   
+                        }]
+                    }
+                }
+            });
+            var ctx = document.getElementById('dead-chart');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dblabel,
+                    datasets: [{
+                        label: 'No. of dead cases worldwide',
+                        data: dead,
+                        backgroundColor: [
+                            'rgba(255, 159, 64, 0.2)',
+                            
+                        ],
+                        borderColor: [
+                            'rgba(255, 159, 64, 1)'
+                            
+                        ],
+                        
+                    }],
+                },
+                options: {
+                    elements: {
+                        point:{
+                            radius: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
+                            
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
+                            
+                        }]
+                    }
+                }
+            });
+            var ctx = document.getElementById('log-dead-chart');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dblabel,
+                    datasets: [{
+                        label: 'Rate of increase of deaths worldwide',
+                        data: logDead,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                        ],                            
+                    }]
+                },
+                options: {
+                    elements: {
+                        point:{
+                            radius: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }   
+                        }]
+                    }
+                }
+            });
+            var ctx = document.getElementById('recovered-chart');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dblabel,
+                    datasets: [{
+                        label: 'No. of recovered cases worldwide',
+                        data: recovered,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            
+                        ],
+                        
+                    }],
+                },
+                options: {
+                    elements: {
+                        point:{
+                            radius: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
+                            
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
+                            
+                        }]
+                    }
+                }
+            });
+            var ctx = document.getElementById('log-recovered-chart');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dblabel,
+                    datasets: [{
+                        label: 'Rate of increase of recovery worldwide',
+                        data: logRecovered,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
                         ],                            
                     }]
                 },
@@ -219,7 +379,6 @@
         })
     </script>
     <body>
-
         <section id = 'Landing'>
             <picture>
                 <source media = "(min-width: 720px)" srcset="{% static 'images/Landing.png' %}">
@@ -307,6 +466,18 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="log-confirmed-chart" width="200" height="150"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="dead-chart" width="200" height="150"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="log-dead-chart" width="200" height="150"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="recovered-chart" width="200" height="150"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="log-recovered-chart" width="200" height="150"></canvas>
                 </div>
                 
                 <p style = "position: relative; font-family: Candal; color: #433e3e; margin-top: 10.5%;font-size: 3vw;margin-bottom: 5%;">Top countries confirmed cases trend</p>

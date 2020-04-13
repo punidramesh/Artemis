@@ -6,6 +6,3 @@ admin.site.register(Livedata)
 
 from .models import GlobalStats
 admin.site.register(GlobalStats)
-
-from .models import CountryConfirmedHistory
-admin.site.register(CountryConfirmedHistory)
