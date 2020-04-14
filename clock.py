@@ -7,7 +7,7 @@ sched = BlockingScheduler()
 def scheduled_job():
     today = datetime.date.today()
     confirmed = []
-    date = []
+    date = ""
     dead = []
     recovered = []
     url = "https://api.thevirustracker.com/free-api?global=stats"
@@ -18,17 +18,17 @@ def scheduled_job():
     confirmed = data['total_cases']
     date = str(today.month) + "/" +  str(today.day) + "/" + str(today.year%100)
     conn = psycopg2.connect(
-                    host = "{}",
-                    port="{}",
-                    database="{}", 
-                    user="{}", 
-                    password="{}")
+                    host = "",
+                    port="",
+                    database="", 
+                    user="", 
+                    password="")
 
     conn.set_session(autocommit=True)
     # Cursor
     cursor = conn.cursor()
+    print("Inserting data:", " ",date," ",dead," ",confirmed," ",recovered)        
     cursor.execute("INSERT INTO artemis_globalstats (date,dead,confirmed,recovered) VALUES (%s,%s,%s,%s)",
-                    date,dead,confirmed,recovered)
-    conn.close()                
-
+                    (date,dead,confirmed,recovered))    
+    print("Done")
 sched.start()
