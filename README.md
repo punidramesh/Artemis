@@ -18,7 +18,7 @@ A website that provides information for tracking COVID-19 spread.
 * The goal of this project is to create a website to monitor the spread of COVID-19.
 
 # Features
-## Provides reliable **real time** updates 
+## Provides **real time** updates 
 ## Data visualizations
 <img src="https://github.com/eken25/Artemis/blob/master/res/graphs.png"/> 
 
