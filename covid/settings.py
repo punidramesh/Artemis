@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'artemis',
+    'django_crontab',
     'rest_framework'
 ]
 
@@ -72,6 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'covid.wsgi.application'
 
+CRONJOBS = [
+    ('58 11 * * *', 'artemis.cron.scheduled_job')
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
