@@ -3,7 +3,7 @@ import json,requests, psycopg2
 import datetime 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=23, minute = 58)
+@sched.scheduled_job('cron', day_of_week='sun-sat', hour=23, minute = 58)
 def scheduled_job():
     today = datetime.date.today()
     confirmed = []
