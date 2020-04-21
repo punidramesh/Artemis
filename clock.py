@@ -1,9 +1,10 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 import json,requests, psycopg2
 import datetime 
+from pytz import utc
 sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', day_of_week='sun-sat', hour=23, minute = 58)
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=18, minute = 28,timezone=utc)
 def scheduled_job():
     today = datetime.date.today()
     confirmed = []
@@ -18,11 +19,11 @@ def scheduled_job():
     confirmed = data['total_cases']
     date = str(today.month) + "/" +  str(today.day) + "/" + str(today.year%100)
     conn = psycopg2.connect(
-                    host = "",
-                    port="",
-                    database="", 
-                    user="", 
-                    password="")
+                    host = "ec2-34-204-22-76.compute-1.amazonaws.com",
+                    port="5432",
+                    database="d9vtoshi8dsn03", 
+                    user="vdzlfvisgqhtzp", 
+                    password="0bcb8932ca66aa9650be5de340e40953cd6cb535af8a55b3b1e32b88f2ba807c")
 
     conn.set_session(autocommit=True)
     # Cursor

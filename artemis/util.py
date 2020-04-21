@@ -84,16 +84,25 @@ def getTimeline(parameter):
     recovered = []
     confirmed = []
     for i in data:
+        print(i)
         dead.append(i['dead'])
         date.append(i['date'][0:(len(i['date']) - 3)])
         recovered.append(i['recovered'])
         confirmed.append(i['confirmed'])
+    dead.reverse()
+    confirmed.reverse()
+    recovered.reverse()
     if parameter == 'dead':
+        print(dead)
         return dead   
     elif parameter == 'confirmed':
+        print(confirmed)
         return confirmed 
     elif parameter == 'date':
         return date 
     elif parameter == 'recovered':
-        return recovered          
+        print(recovered)
+        return recovered 
+    elif parameter == 'length':   
+        return len(dead)      
    

@@ -22,7 +22,7 @@
     <script>
         $('html').css('overflow-x', 'initial');
         $.getJSON('get-data', function(data) {
-            var confirmed = data.confirmed
+            var confirmed = data.confirmed.reverse()
             var logConfirmed = []
             var logRecovered = []
             var logDead = []
@@ -30,11 +30,11 @@
             for(i = 0 ; i < confirmed.length; i++){
                 logConfirmed[i] = Math.log(confirmed[i])
             }
-            var recovered = data.recovered
+            var recovered = data.recovered.reverse()
             for(i = 0 ; i < recovered.length; i++){
                 logRecovered[i] = Math.log(recovered[i])
             }
-            var dead = data.dead
+            var dead = data.dead.reverse()
             for(i = 0 ; i < dead.length; i++){
                 logDead[i] = Math.log(dead[i])
             }
