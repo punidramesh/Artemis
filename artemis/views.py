@@ -16,7 +16,7 @@ class Chartdata(APIView):
             "date": getTimeline('date'),
             "topcountry": getTopCountryHistory('country'),
             "topcountry_confirmed": getTopCountryHistory('confirmed'),
-            "confirmed_labels": list(range(0,len(getTimeline('dead')))) 
+            "confirmed_labels": list(range(0,getTimeline('length'))) 
         }
         return Response(data)
 

@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'artemis',
-    'django_crontab',
     'rest_framework'
 ]
 
@@ -73,24 +72,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'covid.wsgi.application'
 
-CRONJOBS = [
-    ('58 11 * * *', 'artemis.cron.scheduled_job')
-]
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     "default": {
-        "ENGINE": "",
-        "NAME": "",
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "",
-        "PORT": "",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "denrk53krcbfui",
+        "USER": "wzxcfbjuonieqo",
+        "PASSWORD": "24b2eb4b339376f5ddba68406f205fb0953d347251c579cf4ee9f54476cc294d",
+        "HOST": "ec2-23-20-129-146.compute-1.amazonaws.com",
+        "PORT": "5432",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

@@ -1,5 +1,10 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 import json,requests, psycopg2
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "covid.settings")
+import django
+django.setup()
+from artemis.models import GlobalStats
 import datetime 
 from pytz import utc
 sched = BlockingScheduler()
@@ -18,18 +23,9 @@ def scheduled_job():
     recovered = data['total_recovered']
     confirmed = data['total_cases']
     date = str(today.month) + "/" +  str(today.day) + "/" + str(today.year%100)
-    conn = psycopg2.connect(
-                    host = "ec2-34-204-22-76.compute-1.amazonaws.com",
-                    port="5432",
-                    database="d9vtoshi8dsn03", 
-                    user="vdzlfvisgqhtzp", 
-                    password="0bcb8932ca66aa9650be5de340e40953cd6cb535af8a55b3b1e32b88f2ba807c")
-
-    conn.set_session(autocommit=True)
-    # Cursor
-    cursor = conn.cursor()
-    print("Inserting data:", " ",date," ",dead," ",confirmed," ",recovered)        
-    cursor.execute("INSERT INTO artemis_globalstats (date,dead,confirmed,recovered) VALUES (%s,%s,%s,%s)",
-                    (date,dead,confirmed,recovered))    
+    d = GlobalStats(date = date,dead = dead,
+            confirmed = confirmed, recovered = recovered)
+    d.save() 
+    print("Inserting data:", " ",date," ",dead," ",confirmed," ",recovered)         
     print("Done")
 sched.start()

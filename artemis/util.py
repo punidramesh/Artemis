@@ -4,12 +4,13 @@ from .models import Livedata, GlobalStats
 from math import log10,log 
 
 # Generate a list with the fields zipped together
+
 def getJSON():
     try:
         death = []
         confirmed = []
-        recovered = []
         country = []
+        recovered = []
         url = "https://api.thevirustracker.com/free-api?countryTotals=ALL"
         data = requests.get(url).json()['countryitems'][0]
         data = dict(itertools.islice(data.items(), (len(data) - 1)))   
@@ -41,8 +42,8 @@ def upload():
 
     # Insert data into model
     for i in range(size):
-        d = Livedata(country = country[i],dead = death[i],
-            confirmed = confirmed[i], recovered = recovered[i])
+        d = Livedata(country = country[i],dead = death[i],recovered = recovered[i],
+            confirmed = confirmed[i])
         d.save()    
 
 def topCountries():
@@ -78,31 +79,24 @@ def getTopCountryHistory(parameter):
 
 
 def getTimeline(parameter):
-    data = GlobalStats.objects.values()
+    data = GlobalStats.objects.values().order_by('id')
     dead = []
     date = []
     recovered = []
     confirmed = []
     for i in data:
-        print(i)
         dead.append(i['dead'])
         date.append(i['date'][0:(len(i['date']) - 3)])
-        recovered.append(i['recovered'])
         confirmed.append(i['confirmed'])
-    dead.reverse()
-    confirmed.reverse()
-    recovered.reverse()
+        recovered.append(i['recovered'])
     if parameter == 'dead':
-        print(dead)
         return dead   
     elif parameter == 'confirmed':
-        print(confirmed)
         return confirmed 
+    elif parameter == 'recovered':
+        return recovered 
     elif parameter == 'date':
         return date 
-    elif parameter == 'recovered':
-        print(recovered)
-        return recovered 
     elif parameter == 'length':   
         return len(dead)      
    
